@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react"
 
 interface InputBarProps {
@@ -6,17 +7,11 @@ interface InputBarProps {
   onSubmit?: (value: string) => void
 }
 
-export default function InputBar({ type = "text", placeholder = "Digite...", onSubmit }: InputBarProps) {
+export default function InputBar({ type = "", placeholder = ""}: InputBarProps) {
   const [value, setValue] = useState("")
 
-  const handleSubmit = () => {
-    if (!value.trim()) return
-    onSubmit?.(value)
-    setValue("")
-  }
-
   return (
-    <div className="border border-gray-300 rounded-lg px-4 py-2 text-zinc-800 ">
+    <div className="border border-gray-300 rounded-lg px-4 py-2 text-zinc-800 text-left font-arial mt-4"> {/* mudar algo aqui se quiser mudar o que tem dentro da box de input */}
       <input
         type={type}
         value={value}
