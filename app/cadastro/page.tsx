@@ -16,7 +16,7 @@ export default function Cadastro(){
                 {/* as coisas dentro da caixona do cadastro */}
                 
                 {/*coe victor, eu juro que esse monte de comentário não é o claude, é que eu sou muito lerdo com input*/}
-                <div className='flex flex-col gap-0.2'>
+                <div className='flex flex-col gap-4.5'>
                 {/*nome*/}
                 <InputBar
                 type='text'
