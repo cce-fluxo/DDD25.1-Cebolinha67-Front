@@ -1,7 +1,4 @@
 import Image from "next/image";
-import InputBox from "./components/InputBox";
-import BotaoEntar from "./components/BotaoEntrar";
-import ToggleLogin from "./components/ToggleLogin";
 
 export default function Home() {
   return (
@@ -50,20 +47,12 @@ export default function Home() {
             {/* Funcionalidades do meio da caixo */}
             <div className="flex w-112.5 flex-col items-center gap-6.75">
               {/* Campos de email e senha */}
-              <div className="flex flex-col items-start gap-4.5 self-stretch">
-                <InputBox placeholder="E-mail" tipo="email" />
-                <InputBox placeholder="Senha" tipo="password" />
-              </div>
+              <div className="flex flex-col items-start gap-4.5 self-stretch"></div>
               {/* Lembrar acesso e esqueci senha */}
-              <div className="flex justify-between items-center self-stretch">
-                <ToggleLogin />
-              </div>
+              <div className="flex justify-between items-center self-stretch"></div>
             </div>
             {/* Botões da parte debaixo caixa */}
-            <div className="flex w-57.5 flex-col items-start gap-4.5">
-              <BotaoEntar texto="Entrar" cheio={true} />
-              <BotaoEntar texto="Cadastrar" cheio={false} />
-            </div>
+            <div className="flex w-57.5 flex-col items-start gap-4.5"></div>
           </div>
         </div>
       </div>
