@@ -3,13 +3,8 @@ import "./globals.css";
 import { Lato } from "next/font/google";
 
 export const metadata: Metadata = {
-<<<<<<< Updated upstream
-  title: "SorriSync", // titulo que aparece na barra de navegação
-  description: "Consultório",
-=======
   title: "SorrySync",
   description: "Protótipo Consultório de dentista",
->>>>>>> Stashed changes
 };
 
 const lato = Lato({
