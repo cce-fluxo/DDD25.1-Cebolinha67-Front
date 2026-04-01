@@ -17,7 +17,7 @@ export default function InputBar({ type = "", placeholder = ""}: InputBarProps) 
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
-        className="flex-1 bg-transparent text-sm text-zinc-800 placeholder:text-zinc-400 outline-none"
+        className="flex-1 bg-transparent text-sm text-zinc-800 placeholder:text-zinc-400 outline-none "
       />
     </div>
   )
