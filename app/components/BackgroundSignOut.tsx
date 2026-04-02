@@ -2,12 +2,13 @@ import React from 'react'
 
 export default function BackgroundSignOut({ children }: { children: React.ReactNode }) {
   return (
-    <main className="relative flex w-screen h-screen items-center justify-center bg-indigo-300">
+    <main className="relative flex min-h-screen items-center justify-center bg-indigo-300">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="-434 0 2250 900" 
+        viewBox="-434 0 2250 900"
         fill="none"
-        className="absolute top-10 z-0 w-640 h-300 " // pra mudar o quanto a onda se extende, muda, muda aqui 
+        preserveAspectRatio="none"
+        className="absolute -bottom-1/2 -translate-y-1/2 z-0 w-[150%] h-[80vh]"
       >
         <path
           fillRule="evenodd"
@@ -17,9 +18,9 @@ export default function BackgroundSignOut({ children }: { children: React.ReactN
         />
       </svg>
 
-      <img src="/Motta.png" alt="Motta" className="absolute bottom-30 left-0 h-70 z-0" />
+      <img src="/Motta.png" alt="Motta" className="fixed bottom-0 left-0 h-40 md:h-56 lg:h-70 z-0" />
 
-      <div className="absolute inset-0 flex items-center justify-center z-10">
+      <div className="relative z-10 flex items-center justify-center w-full py-10">
         {children}
       </div>
     </main>

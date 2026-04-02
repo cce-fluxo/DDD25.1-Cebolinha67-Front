@@ -15,7 +15,7 @@ export default function RootLayout({
     <html
       lang="en"
     >
-      <body >{children}</body>
+      <body className="bg-indigo-300" >{children}</body>
     </html>
   );
 }
