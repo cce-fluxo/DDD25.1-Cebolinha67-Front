@@ -1,26 +1,27 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { Lato } from "next/font/google";
+import type { ReactNode } from "react";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "SorrySync",
-  description: "Protótipo Consultório de dentista",
+  description: "Prototipo de consultorio de dentista",
 };
 
 const lato = Lato({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-lato", // Nome da variável CSS
+  weight: ["400", "700", "900"],
+  variable: "--font-lato",
 });
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html className="${lato.variable} h-full w-screen" lang="en">
-      <body>{children}</body>
+    <html lang="pt-BR" className={`${lato.variable} h-full`}>
+      <body className="min-h-screen font-sans antialiased">{children}</body>
     </html>
   );
 }
