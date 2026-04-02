@@ -1,8 +1,8 @@
-import CadastroBox from '../components/CadastroBox';
-import HeaderSignOut from '../components/HeaderSignOut';
-import InputBar from '../components/InputBar';
-import BackgroundSignOut from '../components/BackgroundSignOut';
-import VoltarContinuarButton from '../components/VoltarContinuarButton';
+import CadastroBox from '../../components/CadastroBox';
+import HeaderSignOut from '../../components/HeaderSignOut';
+import InputBar from '../../components/InputBar';
+import BackgroundSignOut from '../../components/BackgroundSignOut';
+import VoltarContinuarButton from '../../components/VoltarContinuarButton';
 
 export default function Cadastro(){
     return (
