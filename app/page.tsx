@@ -5,7 +5,7 @@ import HomemNoPc from "./components/HomemNoPc";
 
 export default function Home() {
   return (
-    <div className="flex flex-col h-screen w-screen">
+    <div className="flex flex-col h-screen w-screen"> {/*verificar h-screen*/}
       {/*Barra de cabeçalho branca com a logo */}
       <HeaderLogin />
       {/* Parte principal da página */}
