@@ -8,11 +8,9 @@ export default function CrieSuaSenha(){
     return (
         <div>
             <HeaderSignOut></HeaderSignOut>
-
             <BackgroundSignOut>
-                <CrieSuaSenhaBox>
                     <div>
-
+                    <CrieSuaSenhaBox>
                     <div className="flex flex-col gap-4">
                     <div className="flex flex-row justify-center items-center gap-1 mt-5">
                         <div className="">
@@ -27,9 +25,8 @@ export default function CrieSuaSenha(){
 
                     <CriarContaCancelarButton></CriarContaCancelarButton>
                     </div>
-
+                    </CrieSuaSenhaBox>
                     </div>
-                </CrieSuaSenhaBox>
             </BackgroundSignOut>
         </div>
     )
