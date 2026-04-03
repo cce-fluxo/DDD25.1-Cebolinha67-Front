@@ -10,8 +10,8 @@ interface InputBarProps {
 export default function InputBar({ type = "", placeholder = "" }: InputBarProps) {
   const [value, setValue] = useState("")
 
-  return (
-    <div className="flex w-full px-3.5 py-3.5 justify-between items-center rounded-[10px] border-[1.5px] border-[#B5B5B5]">
+  return ( // mudei o valor do py pra barra ficar mais igual ao do figma
+    <div className="flex w-full px-3.5 py-2.5 justify-between items-center rounded-[10px] border-[1.5px] border-[#B5B5B5]">
       <input
         type={type}
         value={value}
