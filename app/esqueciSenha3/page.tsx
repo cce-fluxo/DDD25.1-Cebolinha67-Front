@@ -1,11 +1,14 @@
 "use client"
 
+import { useRouter } from "next/navigation";
 import BotaoEntrar from "../components/BotaoEntrar";
 import BotaoVoltar from "../components/BotaoVoltar";
 import HeaderLogin from "../components/HeaderLogin";
 import InputBox from "../components/InputBox";
 
 export default function EsqueciMinhaSenha(){
+    const router = useRouter();
+
     return (
     <div className="flex flex-col h-full w-full gap-18 items-center">
         <HeaderLogin />
@@ -21,7 +24,7 @@ export default function EsqueciMinhaSenha(){
             </div>
             <div className="flex w-57.5 flex-col items-start gap-4.5">
                 <BotaoEntrar texto="Continuar" cheio={true} />
-                <BotaoVoltar/>
+                <BotaoVoltar onClick={() => router.push("./esqueciSenha2")}/>
             </div>
 
         </div>

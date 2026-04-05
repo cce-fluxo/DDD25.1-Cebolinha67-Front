@@ -25,7 +25,7 @@ export default function EsqueciMinhaSenha(){
             </div>
             <div className="flex w-57.5 flex-col items-start gap-4.5">
                 <BotaoEntrar texto="Continuar" onClick={ () => router.push("./esqueciSenha3")} cheio={true} />
-                <BotaoVoltar/>
+                <BotaoVoltar onClick={() => router.push("./esqueciSenha")}/>
             </div>
 
         </div>
