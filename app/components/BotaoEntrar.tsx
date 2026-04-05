@@ -1,6 +1,7 @@
 interface BotaoEntrarProps {
   texto: string;
   cheio: boolean;
+  onClick?: () => void;
 }
 
 export default function BotaoEntrar(props: BotaoEntrarProps) {
@@ -11,7 +12,7 @@ export default function BotaoEntrar(props: BotaoEntrarProps) {
 
   return (
     <>
-      <button className={classCompleto}>{props.texto}</button>
+      <button className={classCompleto} onClick={props.onClick}>{props.texto}</button>
     </>
   );
 }
