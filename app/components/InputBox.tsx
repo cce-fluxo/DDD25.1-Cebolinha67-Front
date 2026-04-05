@@ -4,7 +4,7 @@ interface InputBoxProps {
   visibilidade?: boolean;
 }
 
-type Tipo = "email" | "password";
+type Tipo = "email" | "password" | "string";
 
 export default function InputBox(props: InputBoxProps) {
   return (
