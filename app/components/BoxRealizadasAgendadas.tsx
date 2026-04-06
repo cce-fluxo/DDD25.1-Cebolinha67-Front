@@ -6,7 +6,7 @@ export default function BoxRealizadasAgendadas(){
 
                     {/*parte de cima */}
                     <div className="flex justify-center items-center gap-15 mb-4 pb-4 border-b border-gray-400">
-                        <button className="text-indigo-800 font-medium">Realizadas</button>
+                        <button className="text-indigo-700 font-bold">Realizadas</button>
                         <button className="text-gray-400 font-medium">Agendadas</button>
                     </div>
 
