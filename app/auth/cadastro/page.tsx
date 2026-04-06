@@ -22,5 +22,5 @@ export default function Cadastro() {
         </CadastroBox>
       </BackgroundSignOut>
     </div>
-  )
+  ) // parte do cadastro feita 
 }
