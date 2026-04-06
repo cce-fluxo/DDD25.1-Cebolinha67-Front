@@ -19,7 +19,7 @@ export default function BoxRealizadasAgendadas(){
 
                    {/* caixas dos pacientes */} 
 
-                    <div className="max-h-[60vh] overflow-y-auto scrollbar scrollbar-thumb-indigo-400 scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+                    <div className="max-h-[64vh] overflow-y-auto scrollbar scrollbar-thumb-indigo-400 scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
                         <div className="flex flex-col gap-2.5">
                             <div className="flex p-5 min-h-30 justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400"></div>
                             <div className="flex p-5 min-h-30 justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400"></div>
