@@ -58,7 +58,20 @@ export default function BoxSelecionouPaciente(){
             <div className="flex flex-col gap-4 p-8 w-[50%]">
                 <p className="text-medium font-medium text-indigo-700">Informações da Consulta</p>
                 <div className="flex flex-col gap-1">
-                    <p>eu</p>
+                    <p className="text-xs text-gray-400">Profissional</p>
+                    <p className="text-sm font-medium">Dr.Clara Guedes</p>
+                </div>
+
+                {/* duplinha dinâmica data e hora */}
+                <div className="flex gap-[20.2vh]">
+                    <div className="">
+                        <p></p>
+                        <p></p>
+                    </div>
+
+                    <div className="">
+                        <p></p>
+                    </div>
                 </div>
             </div>
 

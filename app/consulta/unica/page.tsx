@@ -1,6 +1,6 @@
-import BoxRealizadasAgendadas from "@/app/components/BoxRealizadasAgendadas";
-import BoxSelecionouPaciente from "@/app/components/BoxSelecionouPaciente";
-import HeaderSignIn from "@/app/components/HeaderSignIn";
+import BoxRealizadasAgendadas from "@/app/components/boxes/BoxRealizadasAgendadas";
+import BoxSelecionouPaciente from "@/app/components/boxes/BoxSelecionouPaciente";
+import HeaderSignIn from "@/app/components/headers/HeaderSignIn";
 
 export default function ConsultaUnica(){
     return (

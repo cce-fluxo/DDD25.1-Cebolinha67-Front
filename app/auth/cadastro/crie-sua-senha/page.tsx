@@ -1,7 +1,7 @@
-import BackgroundSignOut from "@/app/components/BackgroundSignOut";
-import CriarContaCancelarButton from "@/app/components/CriarContaCancelarButton";
-import CrieSuaSenhaBox from "@/app/components/CrieSuaSenhaBox";
-import HeaderSignOut from "@/app/components/HeaderSignOut";
+import BackgroundSignOut from "@/app/components/backgrounds/BackgroundSignOut";
+import CriarContaCancelarButton from "@/app/components/buttons/CriarContaCancelarButton";
+import CrieSuaSenhaBox from "@/app/components/boxes/CrieSuaSenhaBox";
+import HeaderSignOut from "@/app/components/headers/HeaderSignOut";
 import InputBar from "@/app/components/InputBar";
 
 export default function CrieSuaSenha(){
