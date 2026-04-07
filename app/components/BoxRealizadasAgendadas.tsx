@@ -16,7 +16,7 @@ export default function BoxRealizadasAgendadas(){
                     </div>
 
                     {/* dropdown bar */}
-                    <div className="flex justify-between items-center max-w-50 border border-gray-600 rounded-full px-4 py-1.5 -mt-10 text-sm">
+                    <div className="flex justify-between items-center max-w-28 border border-gray-600 rounded-full px-4 py-0.5 -mt-10 text-sm">
                         <span className="text-gray-500 font-medium">Todas</span>
                         <span>▼</span>
                     </div>
