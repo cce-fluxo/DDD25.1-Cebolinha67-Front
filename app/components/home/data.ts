@@ -1,4 +1,10 @@
-import type { Appointment, CalendarDay, FilterOption, NavItem } from "./types";
+import type {
+  Appointment,
+  CalendarDay,
+  FilterOption,
+  MonthYear,
+  NavItem,
+} from "./types";
 
 export const navItems: NavItem[] = [
   { label: "Inicio", href: "/sw/home", icon: "home" },
@@ -6,17 +12,43 @@ export const navItems: NavItem[] = [
   { label: "Perfil", href: "/sw/perfil" },
   { label: "Postagem", href: "/sw/postagem" },
 ];
+export function getMonthLabel(month: number) {
+  const months = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ];
+  return months[month];
+}
 
 const WEEKDAY_LABELS = ["DOM.", "SEG.", "TER.", "QUA.", "QUI.", "SEX.", "SAB."];
 export const miniWeekdayLabels = ["D", "S", "T", "Q", "Q", "S", "S"];
 
+export function getPrevMonth(month: number, year: number): MonthYear {
+  if (month <= 11) {
+    return { month: month - 1, year };
+  }
+  return { month: 11, year: year - 1 };
+}
+
+export function getNextMonth(month: number, year: number): MonthYear {
+  if (month <= 11) {
+    return { month: month + 1, year };
+  }
+  return { month: 0, year: year + 1 };
+}
+
 // HARDCODE
 ///////////////////////////////////////////////////////////////
-export const monthLabel = "Setembro";
-export const miniMonthLabel = "Setembro 2005";
-export const thisDay = 25;
-export const thisMonthIndex = 8; // Lembre-se que os meses são indexados de 0 (Janeiro) a 11 (Dezembro)
-export const thisYear = 2005;
 
 export const filterOptions: FilterOption[] = [
   { id: "odontologia-geral", label: "Odontologia geral" },
@@ -36,14 +68,18 @@ const appointmentsByDay: Record<number, Appointment[]> = {
 };
 /////////////////////////////////////
 
-function buildMonthGrid(year: number, monthIndex: number): CalendarDay[] {
+export function buildMonthGrid(
+  month: number,
+  year: number,
+  thisDay?: number,
+): CalendarDay[] {
   // Calculamos o dia da semana do primeiro dia do mês,
-  const firstDayOfMonth = new Date(Date.UTC(year, monthIndex, 1)).getUTCDay();
+  const firstDayOfMonth = new Date(Date.UTC(year, month, 1)).getUTCDay();
   // Calculamos o total de dias do mês atual
-  const totalDays = new Date(Date.UTC(year, monthIndex + 1, 0)).getUTCDate();
+  const totalDays = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
   // Calculamos o total de dias do mês anterior.
   const totalDaysPreviousMonth = new Date(
-    Date.UTC(year, monthIndex, 0),
+    Date.UTC(year, month, 0),
   ).getUTCDate();
   // Para criar uma grade de 5 semanas (35 dias), precisamos de 35 células, preenchendo os dias do mês atual e os dias necessários do mês anterior e seguinte para completar a grade.
   const totalCells = 35;
@@ -93,6 +129,3 @@ function buildMonthGrid(year: number, monthIndex: number): CalendarDay[] {
     };
   });
 }
-
-// Exporta a grade do mês.
-export const monthDays = buildMonthGrid(thisYear, thisMonthIndex);

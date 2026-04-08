@@ -1,62 +1,37 @@
-import type { CalendarDay } from "./types";
+import { ArrowLeftIcon, ArrowRightIcon } from "../icons";
+import ChangeMonthButton from "./ChangeMonthButton";
+import { buildMonthGrid, getMonthLabel, miniWeekdayLabels } from "./data";
 
 type MiniCalendarProps = {
-  label: string;
-  weekdayLabels: string[];
-  days: CalendarDay[];
+  month: number;
+  year: number;
 };
 
-function ArrowLeftIcon() {
-  return (
-    <svg viewBox="0 0 16 16" className="size-4" fill="none" aria-hidden="true">
-      <path
-        d="M10.5 3.5 6 8l4.5 4.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function ArrowRightIcon() {
-  return (
-    <svg viewBox="0 0 16 16" className="size-4" fill="none" aria-hidden="true">
-      <path
-        d="M5.5 3.5 10 8l-4.5 4.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-export function MiniCalendar({
-  label,
-  weekdayLabels,
-  days,
-}: MiniCalendarProps) {
+export function MiniCalendar({ month, year }: MiniCalendarProps) {
+  const label = getMonthLabel(month) + " " + year;
+  const weekdayLabels = miniWeekdayLabels;
+  const now = new Date();
+  const today =
+    now.getMonth() === month && now.getFullYear() === year ? now.getDate() : -1;
+  const days = buildMonthGrid(month, year, today);
   return (
     <section className="rounded-[15px] border border-[#B5B5B5] bg-white p-5">
       <header className="mb-5 flex items-center justify-between text-[#5754DE]">
-        <button
-          type="button"
-          aria-label="Mes anterior"
-          className="grid size-6 place-items-center rounded-full transition-colors hover:bg-[#efefff]"
-        >
-          <ArrowLeftIcon />
-        </button>
+        <ChangeMonthButton
+          direction="previous"
+          calender="mini"
+          month={month}
+          year={year}
+        />
 
         <h2 className="text-base font-bold">{label}</h2>
 
-        <button
-          type="button"
-          aria-label="Proximo mes"
-          className="grid size-6 place-items-center rounded-full transition-colors hover:bg-[#efefff]"
-        >
-          <ArrowRightIcon />
-        </button>
+        <ChangeMonthButton
+          direction="next"
+          calender="mini"
+          month={month}
+          year={year}
+        />
       </header>
 
       <div className="grid grid-cols-7 gap-y-3 text-center">

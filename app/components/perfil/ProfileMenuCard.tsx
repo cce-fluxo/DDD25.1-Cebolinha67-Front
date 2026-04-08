@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import { ClipboardIcon, HelpCircleIcon } from "./icons";
+import { ClipboardIcon, HelpCircleIcon } from "../icons";
 import type { ProfileMenuIcon, ProfileMenuItem } from "./types";
 
 type ProfileMenuCardProps = {

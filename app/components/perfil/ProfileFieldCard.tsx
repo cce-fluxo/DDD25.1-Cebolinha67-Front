@@ -1,4 +1,4 @@
-import { EditSquareIcon } from "./icons";
+import { EditSquareIcon } from "../icons";
 import type { ProfileField } from "./types";
 
 type ProfileFieldCardProps = {

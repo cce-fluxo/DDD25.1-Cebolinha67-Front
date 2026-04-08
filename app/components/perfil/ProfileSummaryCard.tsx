@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PencilBadgeIcon } from "./icons";
+import { PencilBadgeIcon } from "../icons";
 import type { ProfileSummaryData } from "./types";
 
 type ProfileSummaryCardProps = {

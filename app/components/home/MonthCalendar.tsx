@@ -1,38 +1,15 @@
+import { ArrowLeftIcon, ArrowRightIcon } from "../icons";
+import ChangeMonthButton from "./ChangeMonthButton";
+import { buildMonthGrid, getMonthLabel } from "./data";
 import type { CalendarDay } from "./types";
 
 type MonthCalendarProps = {
-  month: string;
-  days: CalendarDay[];
+  month: number;
+  year: number;
 };
 
 function cx(...classes: Array<string | false | undefined>) {
   return classes.filter(Boolean).join(" ");
-}
-
-function ArrowLeftIcon() {
-  return (
-    <svg viewBox="0 0 16 16" className="size-5" fill="none" aria-hidden="true">
-      <path
-        d="M10.5 3.5 6 8l4.5 4.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function ArrowRightIcon() {
-  return (
-    <svg viewBox="0 0 16 16" className="size-5" fill="none" aria-hidden="true">
-      <path
-        d="M5.5 3.5 10 8l-4.5 4.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
 }
 
 type DayCellProps = {
@@ -106,27 +83,31 @@ function DayCell({ day, index, total }: DayCellProps) {
   );
 }
 
-export function MonthCalendar({ month, days }: MonthCalendarProps) {
+export function MonthCalendar({ month, year }: MonthCalendarProps) {
+  const now = new Date();
+  const today =
+    now.getMonth() === month && now.getFullYear() === year ? now.getDate() : -1;
+  const days = buildMonthGrid(month, year, today);
   return (
     <section className="overflow-hidden rounded-[15px] border border-[#B5B5B5] bg-white">
       <header className="flex h-14 items-center justify-between border-b border-[#9C9AFF] px-4 sm:px-6">
-        <h2 className="text-3xl font-bold text-[#5754DE]">{month}</h2>
+        <h2 className="text-3xl font-bold text-[#5754DE]">
+          {getMonthLabel(month)}
+        </h2>
 
         <div className="flex items-center gap-1 text-[#5754DE]">
-          <button
-            type="button"
-            aria-label="Semana anterior"
-            className="grid size-8 place-items-center rounded-full transition-colors hover:bg-[#efefff]"
-          >
-            <ArrowLeftIcon />
-          </button>
-          <button
-            type="button"
-            aria-label="Proxima semana"
-            className="grid size-8 place-items-center rounded-full transition-colors hover:bg-[#efefff]"
-          >
-            <ArrowRightIcon />
-          </button>
+          <ChangeMonthButton
+            direction="previous"
+            calender="month"
+            month={month}
+            year={year}
+          />
+          <ChangeMonthButton
+            direction="next"
+            calender="month"
+            month={month}
+            year={year}
+          />
         </div>
       </header>
 

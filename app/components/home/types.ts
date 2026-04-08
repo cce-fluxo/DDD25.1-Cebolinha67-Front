@@ -2,6 +2,10 @@ export type Appointment = {
   time: string;
   patient: string;
 };
+export type MonthYear = {
+  month: number;
+  year: number;
+};
 
 export type CalendarDay = {
   key: string;
