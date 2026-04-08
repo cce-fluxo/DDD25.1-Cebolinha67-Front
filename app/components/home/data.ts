@@ -34,14 +34,14 @@ const WEEKDAY_LABELS = ["DOM.", "SEG.", "TER.", "QUA.", "QUI.", "SEX.", "SAB."];
 export const miniWeekdayLabels = ["D", "S", "T", "Q", "Q", "S", "S"];
 
 export function getPrevMonth(month: number, year: number): MonthYear {
-  if (month <= 11) {
+  if (month >= 1) {
     return { month: month - 1, year };
   }
   return { month: 11, year: year - 1 };
 }
 
 export function getNextMonth(month: number, year: number): MonthYear {
-  if (month <= 11) {
+  if (month <= 10) {
     return { month: month + 1, year };
   }
   return { month: 0, year: year + 1 };

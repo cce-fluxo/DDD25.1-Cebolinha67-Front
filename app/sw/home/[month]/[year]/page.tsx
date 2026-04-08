@@ -2,12 +2,12 @@ import { MonthCalendar } from "@/app/components/home/MonthCalendar";
 
 type Props = {
   params: Promise<{
-    year: string;
     month: string;
+    year: string;
   }>;
 };
 
 export default async function HomeMonthPage({ params }: Props) {
-  const { year, month } = await params;
+  const { month, year } = await params;
   return <MonthCalendar year={Number(year)} month={Number(month)} />;
 }

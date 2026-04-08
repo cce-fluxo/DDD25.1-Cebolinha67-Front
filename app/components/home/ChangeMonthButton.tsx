@@ -19,13 +19,13 @@ export default function ChangeMonthButton({
   const isPrevious = direction === "previous";
   const isMini = calender === "mini";
   const label = isPrevious ? "Mês anterior" : "Próximo mês";
-  const iconSize = isMini ? 4 : 5;
+  const iconSize = isMini ? 20 : 30;
   const buttonSize = isMini ? "size-6" : "size-8";
   const Icon = isPrevious ? ArrowLeftIcon(iconSize) : ArrowRightIcon(iconSize);
   const Parm = isPrevious
     ? getPrevMonth(month, year)
     : getNextMonth(month, year);
-  const href = `/home/${Parm.month}/${Parm.year}`;
+  const href = `/sw/home/${Parm.month}/${Parm.year}`;
 
   return (
     <Link

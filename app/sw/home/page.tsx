@@ -6,5 +6,5 @@ export default function HomePage() {
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, "0");
 
-  redirect(`/home/${month}/${year}`);
+  redirect(`/sw/home/${month}/${year}`);
 }
