@@ -28,19 +28,25 @@ export default function BoxRealizadasAgendadas(){
                     >
                         {/* card do figma */}
                         <div className="flex flex-col gap-2.5 pr-4 mr-3">
-                            <div className="flex p-0.5 min-h-20 justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
+                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
                                 <img src="/fotoSync.png" className="w-full h-auto object-cover" />
                             </div>
-                            <div className="flex p-0.5 min-h-20 justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
+                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
+                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
+                            </div>
+                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
+                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
+                            </div>
+                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
+                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
+                            </div>
+                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white border-gray-400 rounded-2xl">
+                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
+                            </div>
+                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
                                 <img src="/fotoSync.png" className="w-full h-full object-cover" />
                             </div>
                             <div className="flex p-0.5 min-h-20 justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
-                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
-                            </div>
-                            <div className="flex p-0.5 min-h-20 justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
-                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
-                            </div>
-                            <div className="flex p-0.5 min-h-20 justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white border-gray-400 rounded-2xl">
                                 <img src="/fotoSync.png" className="w-full h-full object-cover" />
                             </div>
                             <div className="flex p-0.5 min-h-20 justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
