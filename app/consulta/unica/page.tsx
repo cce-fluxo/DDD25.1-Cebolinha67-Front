@@ -4,7 +4,7 @@ import HeaderSignIn from "@/app/components/headers/HeaderSignIn";
 
 export default function ConsultaUnica(){
     return (
-        <div className="bg-gray-200 h-full w-screen">
+        <div className="bg-gray-200 h-full w-full">
             <HeaderSignIn></HeaderSignIn>
             <div className="flex gap-4 p-4">
                 <BoxRealizadasAgendadas></BoxRealizadasAgendadas>
