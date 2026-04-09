@@ -3,32 +3,57 @@
 import SimpleBar from 'simplebar-react'
 import 'simplebar-react/dist/simplebar.min.css'
 import { useState } from 'react'
+import { Paciente } from '@/app/sw/consulta/ver-consultas-realizadas/page'
+import { useRouter } from 'next/navigation'
 
 const opcoes = ["Todas", "Última semana", "Último mês", "Último ano"]
 
-export default function BoxRealizadasAgendadas({ abaAtiva = "Realizadas" }: { abaAtiva?: string }){
+// Dados do paciente
+const pacientesMock: Paciente[] = [...Array(8)].map((_, i) => ({
+    nome: "Mariana Baroni",
+    nomeCompleto: "Mariana Baroni da Silva Pereira",
+    cpf: "000.000.000-00",
+    rg: "00.000.000-0",
+    celular: "(21) 98910-3621",
+    telefone: "-",
+    email: "marianabaroni@gmail.com",
+    idade: "22 anos",
+    data: "22/09/2024",
+    foto: "/elipse.png",
+}))
 
+interface Props {
+    abaAtiva?: string
+    onSelecionarPaciente: (paciente: Paciente) => void
+    pacienteSelecionado: Paciente | null
+}
+
+export default function BoxRealizadasAgendadas({
+    abaAtiva = "Realizadas",
+    onSelecionarPaciente,
+    pacienteSelecionado,
+}: Props) {
     const [aberto, setAberto] = useState(false)
     const [selecionado, setSelecionado] = useState("Todas")
-
-    return(
-        <div className="w-[22.5%] shrink-0"> 
+    const route = useRouter()
+    return (
+        <div className="w-[22.5%] shrink-0">
             <div className="p-4">
                 <div className="flex flex-col h-fit gap-8 p-4 bg-white rounded-2xl">
 
-                    {/* parte de cima da sidebar */}
+                    {/* Abas */}
                     <div className="flex flex-row justify-center items-center gap-2 md:gap-4 mb-4 pb-4 border-b border-gray-400">
-                        <button className={`text-sm md:text-base font-bold ${abaAtiva === "Realizadas" ? "text-indigo-700" : "text-gray-400"}`}>
+                        <button onClick={() => route.push("/sw/consulta/ver-consultas-realizadas")} className={`text-sm md:text-base font-bold ${abaAtiva === "Realizadas" ? "text-indigo-700" : "text-gray-400"}`}>
                             Realizadas
                         </button>
-                        <button className={`text-sm md:text-base font-bold ${abaAtiva === "Agendadas" ? "text-indigo-700" : "text-gray-400"}`}>
+                        <button  onClick={()=> route.push("/sw/consulta/ver-consultas-agendadas")} className={`text-sm md:text-base font-bold ${abaAtiva === "Agendadas" ? "text-indigo-700" : "text-gray-400"}`}>
                             Agendadas
                         </button>
                     </div>
 
-                    {/* dropdown */}
+                    {/* Dropdown */}
                     <div className="relative -mt-10">
-                        <div 
+                        <div
                             className="flex justify-between items-center max-w-40 border border-gray-600 rounded-full px-4 py-0.5 text-sm cursor-pointer"
                             onClick={() => setAberto(!aberto)}
                         >
@@ -51,36 +76,48 @@ export default function BoxRealizadasAgendadas({ abaAtiva = "Realizadas" }: { ab
                         )}
                     </div>
 
-                    {/* caixas dos pacientes */}
+                    {/* Cards dos pacientes */}
                     <SimpleBar style={{ maxHeight: '71.5vh' }} className="-mt-5">
                         <div className="flex flex-col gap-2.5 pr-4 mr-3">
-                            {[...Array(8)].map((_, i) => (
-                                <div key={i} className="flex flex-col p-4 gap-2 self-stretch border bg-white rounded-2xl border-gray-200">
-                                    <div className="flex items-center gap-3">
-                                        <img src="/elipse.png" className="w-9 h-9 rounded-full object-cover border border-indigo-400" />
-                                        <span className="text-sm font-medium text-gray-800">Mariana Baroni</span>
+                            {pacientesMock.map((paciente, i) => {
+                                const estaSelecionado = pacienteSelecionado?.nome === paciente.nome && pacienteSelecionado?.data === paciente.data
+
+                                return (
+                                    <div
+                                        key={i}
+                                        onClick={() => onSelecionarPaciente(paciente)}
+                                        className={`flex flex-col p-4 gap-2 self-stretch border rounded-2xl cursor-pointer transition-all
+                                            ${estaSelecionado
+                                                ? "border-indigo-400 bg-indigo-50 shadow-sm"
+                                                : "border-gray-200 bg-white hover:border-indigo-200 hover:bg-indigo-50/40"
+                                            }`}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <img src={paciente.foto} className="w-9 h-9 rounded-full object-cover border border-indigo-400" />
+                                            <span className="text-sm font-medium text-gray-800">{paciente.nome}</span>
+                                        </div>
+                                        <div className="flex gap-4">
+                                            <div className="flex flex-col gap-0.5">
+                                                <span className="text-[10px] text-gray-400">Número</span>
+                                                <span className="text-xs font-medium">{paciente.celular}</span>
+                                            </div>
+                                            <div className="flex flex-col gap-0.5">
+                                                <span className="text-[10px] text-gray-400">Data</span>
+                                                <span className="text-xs font-medium">{paciente.data}</span>
+                                            </div>
+                                            <div className="flex flex-col gap-0.5">
+                                                <span className="text-[10px] text-gray-400">Idade</span>
+                                                <span className="text-xs font-medium">{paciente.idade}</span>
+                                            </div>
+                                        </div>
+                                        {abaAtiva === "Agendadas" && (
+                                            <button className="text-xs text-indigo-500 text-left mt-1">
+                                                Enviar mensagem
+                                            </button>
+                                        )}
                                     </div>
-                                    <div className="flex gap-4">
-                                        <div className="flex flex-col gap-0.5">
-                                            <span className="text-[10px] text-gray-400">Número</span>
-                                            <span className="text-xs font-medium">(21) 98910-3621</span>
-                                        </div>
-                                        <div className="flex flex-col gap-0.5">
-                                            <span className="text-[10px] text-gray-400">Data</span>
-                                            <span className="text-xs font-medium">22/09/2024</span>
-                                        </div>
-                                        <div className="flex flex-col gap-0.5">
-                                            <span className="text-[10px] text-gray-400">Idade</span>
-                                            <span className="text-xs font-medium">22 anos</span>
-                                        </div>
-                                    </div>
-                                    {abaAtiva === "Agendadas" && (
-                                        <button className="text-xs text-indigo-500 text-left mt-1">
-                                            Enviar mensagem
-                                        </button>
-                                    )}
-                                </div>
-                            ))}
+                                )
+                            })}
                         </div>
                     </SimpleBar>
 
