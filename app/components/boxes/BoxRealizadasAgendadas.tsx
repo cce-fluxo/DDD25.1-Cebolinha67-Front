@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 const opcoes = ["Todas", "Última semana", "Último mês", "Último ano"]
 
-export default function BoxRealizadasAgendadas(){
+export default function BoxRealizadasAgendadas({ abaAtiva = "Realizadas" }: { abaAtiva?: string }){
 
     const [aberto, setAberto] = useState(false)
     const [selecionado, setSelecionado] = useState("Todas")
@@ -18,8 +18,12 @@ export default function BoxRealizadasAgendadas(){
 
                     {/* parte de cima da sidebar */}
                     <div className="flex flex-row justify-center items-center gap-2 md:gap-4 mb-4 pb-4 border-b border-gray-400">
-                        <button className="text-sm md:text-base text-indigo-700 font-bold">Realizadas</button>
-                        <button className="text-sm md:text-base text-gray-400 font-medium">Agendadas</button>
+                        <button className={`text-sm md:text-base font-bold ${abaAtiva === "Realizadas" ? "text-indigo-700" : "text-gray-400"}`}>
+                            Realizadas
+                        </button>
+                        <button className={`text-sm md:text-base font-bold ${abaAtiva === "Agendadas" ? "text-indigo-700" : "text-gray-400"}`}>
+                            Agendadas
+                        </button>
                     </div>
 
                     {/* dropdown */}
@@ -50,30 +54,33 @@ export default function BoxRealizadasAgendadas(){
                     {/* caixas dos pacientes */}
                     <SimpleBar style={{ maxHeight: '71.5vh' }} className="-mt-5">
                         <div className="flex flex-col gap-2.5 pr-4 mr-3">
-                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
-                                <img src="/fotoSync.png" className="w-full h-auto object-cover" />
-                            </div>
-                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
-                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
-                            </div>
-                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
-                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
-                            </div>
-                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
-                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
-                            </div>
-                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white border-gray-400 rounded-2xl">
-                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
-                            </div>
-                            <div className="flex p-0.5 min-h-20 w-full justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
-                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
-                            </div>
-                            <div className="flex p-0.5 min-h-20 justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
-                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
-                            </div>
-                            <div className="flex p-0.5 min-h-20 justify-center items-center gap-2.5 self-stretch border-r-2.5 border bg-white rounded-2xl border-gray-400">
-                                <img src="/fotoSync.png" className="w-full h-full object-cover" />
-                            </div>
+                            {[...Array(8)].map((_, i) => (
+                                <div key={i} className="flex flex-col p-4 gap-2 self-stretch border bg-white rounded-2xl border-gray-200">
+                                    <div className="flex items-center gap-3">
+                                        <img src="/elipse.png" className="w-9 h-9 rounded-full object-cover border border-indigo-400" />
+                                        <span className="text-sm font-medium text-gray-800">Mariana Baroni</span>
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <div className="flex flex-col gap-0.5">
+                                            <span className="text-[10px] text-gray-400">Número</span>
+                                            <span className="text-xs font-medium">(21) 98910-3621</span>
+                                        </div>
+                                        <div className="flex flex-col gap-0.5">
+                                            <span className="text-[10px] text-gray-400">Data</span>
+                                            <span className="text-xs font-medium">22/09/2024</span>
+                                        </div>
+                                        <div className="flex flex-col gap-0.5">
+                                            <span className="text-[10px] text-gray-400">Idade</span>
+                                            <span className="text-xs font-medium">22 anos</span>
+                                        </div>
+                                    </div>
+                                    {abaAtiva === "Agendadas" && (
+                                        <button className="text-xs text-indigo-500 text-left mt-1">
+                                            Enviar mensagem
+                                        </button>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                     </SimpleBar>
 

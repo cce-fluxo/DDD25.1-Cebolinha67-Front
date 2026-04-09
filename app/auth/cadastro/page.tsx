@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import CadastroBox from '../../components/boxes/CadastroBox'
-import HeaderSignOut from '../../components/headers/HeaderSignOut'
+import HeaderSignOut from '../../components/headers-use-as-da-home-nao-essas/HeaderSignOut'
 import InputBar from '../../components/inputs/InputBar'
 import BackgroundSignOut from '../../components/backgrounds/BackgroundSignOut'
 import VoltarContinuarButton from '../../components/buttons/VoltarContinuarButton'

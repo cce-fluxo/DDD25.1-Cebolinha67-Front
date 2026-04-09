@@ -3,7 +3,7 @@
 import BackgroundSignOut from "@/app/components/backgrounds/BackgroundSignOut";
 import CriarContaCancelarButton from "@/app/components/buttons/CriarContaCancelarButton";
 import CrieSuaSenhaBox from "@/app/components/boxes/CrieSuaSenhaBox";
-import HeaderSignOut from "@/app/components/headers/HeaderSignOut";
+import HeaderSignOut from "@/app/components/headers-use-as-da-home-nao-essas/HeaderSignOut";
 import InputBar from "@/app/components/inputs/InputBar";
 import { useState } from "react";
 

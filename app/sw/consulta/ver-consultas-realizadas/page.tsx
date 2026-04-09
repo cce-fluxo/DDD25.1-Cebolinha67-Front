@@ -1,15 +1,14 @@
 import BoxRealizadasAgendadas from "@/app/components/boxes/BoxRealizadasAgendadas";
 import BoxSelecionouPaciente from "@/app/components/boxes/BoxSelecionouPaciente";
-import HeaderSignIn from "@/app/components/headers/HeaderSignIn";
+import HeaderSignIn from "@/app/components/headers-use-as-da-home-nao-essas/HeaderSignIn";
 
-export default function ConsultaUnica(){
+export default function VerConsultasRealizadas(){
     return (
         <div className="bg-gray-200 h-full w-full">
             <div className="flex gap-4 p-4">
-                <BoxRealizadasAgendadas></BoxRealizadasAgendadas>
-                <BoxSelecionouPaciente></BoxSelecionouPaciente>
+                <BoxRealizadasAgendadas abaAtiva="Realizadas" />
+                <BoxSelecionouPaciente />
             </div>
-
         </div>
     )
 }
