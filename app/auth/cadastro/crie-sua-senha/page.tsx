@@ -1,10 +1,18 @@
+"use client"
+
 import BackgroundSignOut from "@/app/components/backgrounds/BackgroundSignOut";
 import CriarContaCancelarButton from "@/app/components/buttons/CriarContaCancelarButton";
 import CrieSuaSenhaBox from "@/app/components/boxes/CrieSuaSenhaBox";
 import HeaderSignOut from "@/app/components/headers/HeaderSignOut";
-import InputBar from "@/app/components/InputBar";
+import InputBar from "@/app/components/inputs/InputBar";
+import { useState } from "react";
 
 export default function CrieSuaSenha(){
+
+    const [senha, setSenha] = useState("")
+    const [confirmarSenha, setConfirmarSenha] = useState("")
+
+    const senhasBatem = senha && confirmarSenha && senha === confirmarSenha
     return (
         <div>
             <HeaderSignOut></HeaderSignOut>
@@ -20,10 +28,10 @@ export default function CrieSuaSenha(){
                             <p>senha</p>
                         </div>
                     </div>
-                    <InputBar type="text" placeholder="Senha" />
-                    <InputBar type="text" placeholder="Confirme sua senha"/>
+                    <InputBar type="password" placeholder="Senha" value={senha} onChange={setSenha} />
+                    <InputBar type="password" placeholder="Confirme sua senha" value={confirmarSenha} onChange={setConfirmarSenha} />
 
-                    <CriarContaCancelarButton></CriarContaCancelarButton>
+                    <CriarContaCancelarButton habilitado={false}></CriarContaCancelarButton>
                     </div>
                     </CrieSuaSenhaBox>
                     </div>
