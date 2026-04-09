@@ -31,7 +31,7 @@ export default function CrieSuaSenha(){
                     <InputBar type="password" placeholder="Senha" value={senha} onChange={setSenha} />
                     <InputBar type="password" placeholder="Confirme sua senha" value={confirmarSenha} onChange={setConfirmarSenha} />
 
-                    <CriarContaCancelarButton habilitado={false}></CriarContaCancelarButton>
+                    <CriarContaCancelarButton habilitado={!!senhasBatem}></CriarContaCancelarButton>
                     </div>
                     </CrieSuaSenhaBox>
                     </div>
