@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import BoxPacienteSelecionado from "@/app/components/boxes/BoxPacienteSelecionado"
-import BoxRealizadasAgendadas from "@/app/components/boxes/BoxRealizadasAgendadas"
+import BoxAgendadas from "@/app/components/boxes/BoxAgendadas"
 
 export type Paciente = {
     nome: string
@@ -17,17 +17,16 @@ export type Paciente = {
     foto: string
 }
 
-export default function VerConsultasRealizadas() {
+export default function VerConsultasAgendadas() {
     const [pacienteSelecionado, setPacienteSelecionado] = useState<Paciente | null>(null)
 
     return (
         <div className="bg-gray-200 h-full w-full">
             <div className="flex gap-4 p-4">
-                <BoxRealizadasAgendadas
+                <BoxAgendadas
                     abaAtiva="Realizadas"
                     onSelecionarPaciente={setPacienteSelecionado}
-                    pacienteSelecionado={pacienteSelecionado}
-                />
+                    pacienteSelecionado={pacienteSelecionado}></BoxAgendadas>
                 <BoxPacienteSelecionado paciente={pacienteSelecionado} />
             </div>
         </div>
