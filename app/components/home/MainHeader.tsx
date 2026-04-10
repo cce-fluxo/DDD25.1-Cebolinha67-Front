@@ -21,7 +21,7 @@ export function MainHeader({}){
     <div className="flex flex-row w-full h-[12vh] px-4 py-5 justify-start gap-[8vh] items-center bg-white">
        <button onClick={() => router.push("/")}><img src="/logo.png" alt="logo sorri sync" className="cursor-pointer h-[3vh]" /></button>
       <button onClick={() => router.push("/sw/home")} className={linkClass("/sw/home")}>Home</button>
-      <button onClick={() => router.push("/sw/consulta/ver-consultas-realizadas")} className={linkClass("/sw/consulta/ver-consultas-realizadas")}>Pacientes</button>
+      <button onClick={() => router.push("/sw/consulta/ver-consultas-realizadas")} className={linkClass("/sw/consulta")}>Pacientes</button>
       <button onClick={() => router.push("/sw/perfil")} className={linkClass("/sw/perfil")}>Perfil</button>
       <button onClick={() => router.push("/sw/postagem")} className={linkClass("/sw/postagem")}>Postagem</button>
       <button onClick={() => router.push("")} className="absolute right-[5vh] cursor-pointer"><BellIcon /></button>
