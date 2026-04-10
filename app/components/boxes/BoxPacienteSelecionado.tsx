@@ -1,10 +1,16 @@
+"use client"
+
 import { Paciente } from "@/app/sw/consulta/ver-consultas-realizadas/page"
+import { useRouter } from "next/navigation"
+
 
 interface Props {
     paciente: Paciente | null
 }
 
 export default function BoxPacienteSelecionado({ paciente }: Props) {
+
+    const router = useRouter()
     if (!paciente) {
         return (
             <div className="flex-1 w-[80%] h-[91vh] mt-4 bg-white rounded-2xl flex items-center justify-center flex-col gap-2">
@@ -18,9 +24,9 @@ export default function BoxPacienteSelecionado({ paciente }: Props) {
         <div className="flex-1 h-[91vh] mt-4 bg-white rounded-2xl overflow-hidden flex">
 
             {/* Coluna esquerda — dados pessoais */}
-            <div className="flex flex-col flex-1 p-8 border-r border-gray-100 gap-6 overflow-y-auto">
+            <div className="flex flex-col flex-1 p-7 border-r border-gray-400 gap-6 overflow-y-auto mt-[3vh]">
                 {/* Avatar + nome */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4">   
                     <img
                         src={paciente.foto}
                         className="w-16 h-16 rounded-full object-cover border-2 border-indigo-300"
@@ -28,7 +34,7 @@ export default function BoxPacienteSelecionado({ paciente }: Props) {
                     <h2 className="text-xl font-semibold text-gray-800">{paciente.nome}</h2>
                 </div>
 
-                <hr className="border-gray-100" />
+                <hr className="border-gray-400" />
 
                 {/* Campos */}
                 <div className="flex flex-col gap-5">
@@ -46,13 +52,19 @@ export default function BoxPacienteSelecionado({ paciente }: Props) {
                 </div>
 
                 {/* Botão enviar mensagem */}
-                <button className="mt-auto w-full bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-medium py-3 rounded-xl transition-colors">
+                <div className="flex justify-center">
+                <button onClick={() => router.push("/sw/postagem") } className=" justify-center items-center w-[20vh] -ml-[12vh] bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-medium py-3 rounded-xl transition-colors">
                     Enviar mensagem
                 </button>
+                </div>
             </div>
 
-            {/* Coluna direita — informações da consulta */}
-            <div className="flex flex-col w-[38%] shrink-0 p-8 gap-6 overflow-y-auto">
+            {/* Coluna direita — informações da consulta 
+            
+            se eu quiser mudar todo mundo junto pra direita mudar a pct do width logo na primeira div
+
+            */}
+            <div className="flex flex-col w-[55%] shrink-0 p-8 gap-6 overflow-y-auto mt-[3vh]">
                 <h3 className="text-indigo-600 font-semibold text-base">Informações da consulta</h3>
 
                 <div className="flex flex-col gap-4">
@@ -71,7 +83,7 @@ export default function BoxPacienteSelecionado({ paciente }: Props) {
                     <Campo label="Tipo da Consulta" valor="Peridontia" />
                 </div>
 
-                <hr className="border-gray-100" />
+                <hr className="border-gray-400" />
 
                 <div className="flex flex-col gap-3">
                     <h3 className="text-indigo-600 font-semibold text-base">Documentos</h3>
@@ -107,4 +119,4 @@ function BotaoDoc({ icone, label, destaque }: { icone: string; label: string; de
             {label}
         </button>
     )
-}
+}   

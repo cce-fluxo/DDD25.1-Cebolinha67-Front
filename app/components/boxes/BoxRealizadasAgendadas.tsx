@@ -37,16 +37,16 @@ export default function BoxRealizadasAgendadas({
     const [selecionado, setSelecionado] = useState("Todas")
     const route = useRouter()
     return (
-        <div className="w-[22.5%] shrink-0">
+        <div className="w-[28%] shrink-0">
             <div className="p-4">
                 <div className="flex flex-col h-fit gap-8 p-4 bg-white rounded-2xl">
 
                     {/* Abas */}
                     <div className="flex flex-row justify-center items-center gap-2 md:gap-4 mb-4 pb-4 border-b border-gray-400">
-                        <button onClick={() => route.push("/sw/consulta/ver-consultas-realizadas")} className={`text-sm md:text-base font-bold ${abaAtiva === "Realizadas" ? "text-indigo-700" : "text-gray-400"}`}>
+                        <button onClick={() => route.push("/sw/consulta/ver-consultas-realizadas")} className="text-purple-700 font-bold cursor-pointer">
                             Realizadas
                         </button>
-                        <button  onClick={()=> route.push("/sw/consulta/ver-consultas-agendadas")} className={`text-sm md:text-base font-medium ${abaAtiva === "Agendadas" ? "text-indigo-700" : "text-gray-400"}`}>
+                        <button  onClick={()=> route.push("/sw/consulta/ver-consultas-agendadas")} className="text-gray-400 font-medium cursor-pointer">
                             Agendadas
                         </button>
                     </div>
@@ -54,7 +54,7 @@ export default function BoxRealizadasAgendadas({
                     {/* Dropdown */}
                     <div className="relative -mt-10">
                         <div
-                            className="flex justify-between items-center max-w-40 border border-gray-600 rounded-full px-4 py-0.5 text-sm cursor-pointer"
+                            className="flex justify-between items-center max-w-[16.5vh] border border-gray-600 rounded-full px-4 py-0.5 text-sm cursor-pointer"
                             onClick={() => setAberto(!aberto)}
                         >
                             <span className="text-gray-500 font-medium">{selecionado}</span>
@@ -86,13 +86,13 @@ export default function BoxRealizadasAgendadas({
                                     <div
                                         key={i}
                                         onClick={() => onSelecionarPaciente(paciente)}
-                                        className={`flex flex-col p-4 gap-2 self-stretch border rounded-2xl cursor-pointer transition-all
+                                        className={`flex flex-col py-4 pr-4 pl-2 gap-2 self-stretch border rounded-2xl cursor-pointer transition-all
                                             ${estaSelecionado
                                                 ? "border-indigo-400 bg-indigo-50 shadow-sm"
                                                 : "border-gray-200 bg-white hover:border-indigo-200 hover:bg-indigo-50/40"
                                             }`}
                                     >
-                                        <div className="flex items-center gap-3">
+                                        <div className="flex items-center gap-4">
                                             <img src={paciente.foto} className="w-9 h-9 rounded-full object-cover border border-indigo-400" />
                                             <span className="text-sm font-medium text-gray-800">{paciente.nome}</span>
                                         </div>
@@ -110,11 +110,6 @@ export default function BoxRealizadasAgendadas({
                                                 <span className="text-xs font-medium">{paciente.idade}</span>
                                             </div>
                                         </div>
-                                        {abaAtiva === "Agendadas" && (
-                                            <button className="text-xs text-indigo-500 text-left mt-1">
-                                                Enviar mensagem
-                                            </button>
-                                        )}
                                     </div>
                                 )
                             })}

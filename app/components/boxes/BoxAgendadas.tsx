@@ -37,24 +37,24 @@ export default function ({
     const route = useRouter()
 
     return (
-        <div className="w-[22.5%] shrink-0">
+        <div className="w-[28%] shrink-0">
             <div className="p-4">
                 <div className="flex flex-col h-fit gap-8 p-4 bg-white rounded-2xl">
 
                     {/* Abas */}
                     <div className="flex flex-row justify-center items-center md:gap-4 mb-4 pb-4 border-b border-gray-400">
-                        <button onClick={()=> route.push("/sw/consulta/ver-consultas-realizadas")} className='text-gray-400 font-medium'>Realizadas</button>
-                        <button onClick={() => route.push("/sw/consulta/ver-consultas-agendadas")} className='text-indigo-700 font-bold'>Agendadas</button>
+                        <button onClick={()=> route.push("/sw/consulta/ver-consultas-realizadas")} className='text-gray-400 font-medium cursor-pointer'>Realizadas</button>
+                        <button onClick={() => route.push("/sw/consulta/ver-consultas-agendadas")} className='text-indigo-700 font-bold cursor-pointer'>Agendadas</button>
                     </div>
 
                     {/* Dropdown */}
                     <div className="relative -mt-10">
                         <div
-                            className="flex justify-between items-center max-w-40 border border-gray-400 rounded-full px-4 py-1 text-sm cursor-pointer"
+                            className="flex justify-between items-center max-w-[16.5vh] border border-gray-600 rounded-full px-4 py-0.5 text-sm cursor-pointer"
                             onClick={() => setAberto(!aberto)}
                         >
                             <span className="text-gray-500 font-medium">{selecionado}</span>
-                            <span className="text-gray-500 text-xs">{aberto ? "∧" : "∨"}</span>
+                            <span className="text-gray-500 text-xs font-medium">{aberto ? "▲" : "▼"}</span>
                         </div>
 
                         {aberto && (
@@ -108,7 +108,7 @@ export default function ({
 
                                             {/* o botão que é a diferença do realizada pro agendada (de um fã pra um fanboy) */}
                                         </div>
-                                        <button onClick={()=>route.push("/sw/postagem")} className='text-indigo-700 font-medium'>Enviar Mensagem</button>
+                                        <button onClick={()=>route.push("/sw/postagem")} className=' text-indigo-700 cursor-pointer font-medium'>Enviar Mensagem</button>
                                     </div>
                                 )
                             })}
