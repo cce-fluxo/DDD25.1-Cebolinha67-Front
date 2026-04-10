@@ -20,6 +20,7 @@ const pacientesMock: Paciente[] = [...Array(8)].map((_, i) => ({
     idade: "22 anos",
     data: "22/09/2024",
     foto: "/elipse.png",
+    id:2
 }))
 
 interface Props {
@@ -85,9 +86,12 @@ export default function BoxRealizadasAgendadas({
                                 return (
                                     <div
                                         key={i}
-                                        onClick={() => onSelecionarPaciente(paciente)}
+                                        onClick={() => {
+                                            onSelecionarPaciente(paciente)
+                                            route.push(`/sw/consulta/ver-consultas-realizadas/${paciente.cpf}`)}}
+                                        
                                         className={`flex flex-col py-4 pr-4 pl-2 gap-2 self-stretch border rounded-2xl cursor-pointer transition-all
-                                            ${estaSelecionado
+                                            ${estaSelecionado 
                                                 ? "border-indigo-400 bg-indigo-50 shadow-sm"
                                                 : "border-gray-200 bg-white hover:border-indigo-200 hover:bg-indigo-50/40"
                                             }`}

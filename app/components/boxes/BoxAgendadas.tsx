@@ -19,6 +19,7 @@ const pacientesMock: Paciente[] = [...Array(8)].map((_, i) => ({
     idade: "22 anos",
     data: "22/09/2024",
     foto: "/elipse.png",
+    id: 2
 }))
 
 interface Props {
@@ -81,7 +82,10 @@ export default function ({
                                 return (
                                     <div
                                         key={i}
-                                        onClick={() => onSelecionarPaciente(paciente)}
+                                        onClick={() => {
+                                            onSelecionarPaciente(paciente)
+                                            route.push(`/sw/consulta/ver-consultas-agendadas/${paciente.cpf}`)
+                                        }}
                                         className={`flex flex-col p-4 gap-2 self-stretch border rounded-xl cursor-pointer transition-all
                                             ${estaSelecionado
                                                 ? "border-indigo-400 bg-indigo-50"
@@ -108,13 +112,19 @@ export default function ({
 
                                             {/* o botão que é a diferença do realizada pro agendada (de um fã pra um fanboy) */}
                                         </div>
-                                        <button onClick={()=>route.push("/sw/postagem")} className=' text-indigo-700 cursor-pointer font-medium'>Enviar Mensagem</button>
+                                        <button 
+                                        onClick={(e) => {
+                                        e.stopPropagation()
+                                        route.push("/sw/postagem")
+                                                                    }} 
+                                        className="text-indigo-700 cursor-pointer font-medium">
+                                        Enviar Mensagem
+                                        </button>
                                     </div>
                                 )
                             })}
                         </div>
                     </SimpleBar>
-
                 </div>
             </div>
         </div>

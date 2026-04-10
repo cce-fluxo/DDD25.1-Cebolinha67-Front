@@ -22,7 +22,7 @@ export default function BoxPacienteSelecionado({ paciente }: Props) {
 
     return (
         <div className="flex-1 h-[91vh] mt-4 bg-white rounded-2xl overflow-hidden flex">
-
+                
             {/* Coluna esquerda — dados pessoais */}
             <div className="flex flex-col flex-1 p-7 border-r border-gray-400 gap-6 overflow-y-auto mt-[3vh]">
                 {/* Avatar + nome */}
