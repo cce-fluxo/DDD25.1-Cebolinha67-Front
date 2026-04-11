@@ -75,7 +75,7 @@ export default function ({
 
                     {/* Cards dos pacientes */}
                     <SimpleBar style={{ maxHeight: '71.5vh' }} className="-mt-5">
-                        <div className="flex flex-col justify-center items-center gap-2.5 mr-3">
+                        <div className="flex flex-col justify-center items-center gap-2.5 pr-4 mr-3">
                             {pacientesMock.map((paciente, i) => {
                                 const estaSelecionado = pacienteSelecionado?.nome === paciente.nome && pacienteSelecionado?.data === paciente.data
 
@@ -92,7 +92,7 @@ export default function ({
                                                 : "border-gray-200 bg-white hover:border-indigo-200"
                                             }`}
                                     >
-                                        <div className="flex items-center gap-3 ml-[10vh]">
+                                        <div className="flex items-center gap-3 justify-center">
                                             <img src={paciente.foto} className="w-9 h-9 rounded-full object-cover border border-indigo-400" />
                                             <span className="text-sm font-medium text-gray-800">{paciente.nome}</span>
                                         </div>

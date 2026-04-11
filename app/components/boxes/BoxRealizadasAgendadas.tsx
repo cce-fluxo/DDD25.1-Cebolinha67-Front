@@ -97,7 +97,7 @@ export default function BoxRealizadasAgendadas({
                                                 : "border-gray-200 bg-white hover:border-indigo-200 hover:bg-indigo-50/40"
                                             }`}
                                     >
-                                        <div className="flex items-center gap-4 ml-[10vh]">
+                                        <div className="flex items-center gap-4 justify-center">
                                             <img src={paciente.foto} className="w-9 h-9 rounded-full object-cover border border-indigo-400" />
                                             <span className="text-sm font-medium text-gray-800">{paciente.nome}</span>
                                         </div>
