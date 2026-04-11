@@ -1,22 +1,10 @@
 "use client"
 
-import { use } from "react"
+import { use, useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import BoxPacienteSelecionado from "@/app/components/boxes/BoxPacienteSelecionado"
 import BoxRealizadasAgendadas from "@/app/components/boxes/BoxRealizadasAgendadas"
-import { useState } from "react"
-
-export type Paciente = {
-    nome: string
-    nomeCompleto: string
-    cpf: string
-    rg: string
-    celular: string
-    telefone: string
-    email: string
-    idade: string
-    data: string
-    foto: string
-}
+import { Paciente } from "@/app/sw/consulta/ver-consultas-realizadas/page"
 
 // Mock temporário — substituir pela chamada à API
 const pacientesMock: Paciente[] = [...Array(8)].map((_, i) => ({
@@ -30,6 +18,7 @@ const pacientesMock: Paciente[] = [...Array(8)].map((_, i) => ({
     idade: "22 anos",
     data: "22/09/2024",
     foto: "/elipse.png",
+    id: i,
 }))
 
 interface Props {
@@ -38,9 +27,20 @@ interface Props {
 
 export default function DetalhePaciente({ params }: Props) {
     const { id } = use(params)
-    const [pacienteSelecionado, setPacienteSelecionado] = useState<Paciente | null>(
-        pacientesMock.find((p) => p.cpf === id) ?? null
-    )
+    const router = useRouter()
+
+    const pacienteEncontrado = pacientesMock.find((p) => String(p.id) === id) ?? null
+
+    const [pacienteSelecionado, setPacienteSelecionado] = useState<Paciente | null>(pacienteEncontrado)
+
+    useEffect(() => {
+        if (!pacienteEncontrado) {
+            router.replace("/sw/consulta/ver-consultas-realizadas")
+        }
+    }, [pacienteEncontrado, router])
+
+    // Enquanto redireciona (paciente não encontrado), não renderiza nada
+    if (!pacienteSelecionado) return null
 
     return (
         <div className="bg-gray-200 h-full w-full">

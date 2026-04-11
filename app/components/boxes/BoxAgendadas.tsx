@@ -19,7 +19,7 @@ const pacientesMock: Paciente[] = [...Array(8)].map((_, i) => ({
     idade: "22 anos",
     data: "22/09/2024",
     foto: "/elipse.png",
-    id: 2
+    id: i,
 }))
 
 interface Props {
@@ -84,7 +84,7 @@ export default function ({
                                         key={i}
                                         onClick={() => {
                                             onSelecionarPaciente(paciente)
-                                            route.push(`/sw/consulta/ver-consultas-agendadas/${paciente.cpf}`)
+                                            route.push(`/sw/consulta/ver-consultas-agendadas/${i}`)
                                         }}
                                         className={`flex flex-col p-4 gap-2 self-stretch border rounded-xl cursor-pointer transition-all
                                             ${estaSelecionado
@@ -92,11 +92,11 @@ export default function ({
                                                 : "border-gray-200 bg-white hover:border-indigo-200"
                                             }`}
                                     >
-                                        <div className="flex items-center gap-3">
+                                        <div className="flex items-center gap-3 ml-[10vh]">
                                             <img src={paciente.foto} className="w-9 h-9 rounded-full object-cover border border-indigo-400" />
                                             <span className="text-sm font-medium text-gray-800">{paciente.nome}</span>
                                         </div>
-                                        <div className="flex gap-4">
+                                        <div className="flex gap-4 justify-center items-center">
                                             <div className="flex flex-col gap-0.5">
                                                 <span className="text-[10px] text-gray-400">Número</span>
                                                 <span className="text-xs font-medium">{paciente.celular}</span>

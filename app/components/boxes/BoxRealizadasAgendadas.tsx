@@ -20,7 +20,7 @@ const pacientesMock: Paciente[] = [...Array(8)].map((_, i) => ({
     idade: "22 anos",
     data: "22/09/2024",
     foto: "/elipse.png",
-    id:2
+    id: i,
 }))
 
 interface Props {
@@ -78,7 +78,7 @@ export default function BoxRealizadasAgendadas({
                     </div>
 
                     {/* Cards dos pacientes */}
-                    <SimpleBar style={{ maxHeight: '71.5vh' }} className="-mt-5">
+                    <SimpleBar style={{ maxHeight: '71.5vh', maxWidth: '50vh' }} className="-mt-5">
                         <div className="flex flex-col gap-2.5 pr-4 mr-3">
                             {pacientesMock.map((paciente, i) => {
                                 const estaSelecionado = pacienteSelecionado?.nome === paciente.nome && pacienteSelecionado?.data === paciente.data
@@ -88,7 +88,8 @@ export default function BoxRealizadasAgendadas({
                                         key={i}
                                         onClick={() => {
                                             onSelecionarPaciente(paciente)
-                                            route.push(`/sw/consulta/ver-consultas-realizadas/${paciente.cpf}`)}}
+                                            route.push(`/sw/consulta/ver-consultas-realizadas/${i}`)
+                                        }}
                                         
                                         className={`flex flex-col py-4 pr-4 pl-2 gap-2 self-stretch border rounded-2xl cursor-pointer transition-all
                                             ${estaSelecionado 
@@ -96,11 +97,11 @@ export default function BoxRealizadasAgendadas({
                                                 : "border-gray-200 bg-white hover:border-indigo-200 hover:bg-indigo-50/40"
                                             }`}
                                     >
-                                        <div className="flex items-center gap-4">
+                                        <div className="flex items-center gap-4 ml-[10vh]">
                                             <img src={paciente.foto} className="w-9 h-9 rounded-full object-cover border border-indigo-400" />
                                             <span className="text-sm font-medium text-gray-800">{paciente.nome}</span>
                                         </div>
-                                        <div className="flex gap-4">
+                                        <div className="flex gap-4 items-center justify-center">
                                             <div className="flex flex-col gap-0.5">
                                                 <span className="text-[10px] text-gray-400">Número</span>
                                                 <span className="text-xs font-medium">{paciente.celular}</span>

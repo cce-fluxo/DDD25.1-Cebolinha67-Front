@@ -1,23 +1,10 @@
 "use client"
 
-import { use } from "react"
-import { useState } from "react"
+import { use, useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import BoxPacienteSelecionado from "@/app/components/boxes/BoxPacienteSelecionado"
 import BoxAgendadas from "@/app/components/boxes/BoxAgendadas"
-
-export type Paciente = {
-    nome: string
-    nomeCompleto: string
-    cpf: string
-    rg: string
-    celular: string
-    telefone: string
-    email: string
-    idade: string
-    data: string
-    foto: string
-    id?: number
-}
+import { Paciente } from "@/app/sw/consulta/ver-consultas-realizadas/page"
 
 // Mock temporário — substituir pela chamada à API
 const pacientesMock: Paciente[] = [...Array(8)].map((_, i) => ({
@@ -31,7 +18,7 @@ const pacientesMock: Paciente[] = [...Array(8)].map((_, i) => ({
     idade: "22 anos",
     data: "22/09/2024",
     foto: "/elipse.png",
-    id: 2,
+    id: i,
 }))
 
 interface Props {
@@ -40,9 +27,20 @@ interface Props {
 
 export default function DetalheAgendada({ params }: Props) {
     const { id } = use(params)
-    const [pacienteSelecionado, setPacienteSelecionado] = useState<Paciente | null>(
-        pacientesMock.find((p) => p.cpf === id) ?? null
-    )
+    const router = useRouter()
+
+    const pacienteEncontrado = pacientesMock.find((p) => String(p.id) === id) ?? null
+
+    const [pacienteSelecionado, setPacienteSelecionado] = useState<Paciente | null>(pacienteEncontrado)
+
+    useEffect(() => {
+        if (!pacienteEncontrado) {
+            router.replace("/sw/consulta/ver-consultas-agendadas")
+        }
+    }, [pacienteEncontrado, router])
+
+    // Enquanto redireciona (paciente não encontrado), não renderiza nada
+    if (!pacienteSelecionado) return null
 
     return (
         <div className="bg-gray-200 h-full w-full">

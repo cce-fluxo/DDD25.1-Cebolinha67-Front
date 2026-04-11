@@ -53,7 +53,7 @@ export default function BoxPacienteSelecionado({ paciente }: Props) {
 
                 {/* Botão enviar mensagem */}
                 <div className="flex justify-center">
-                <button onClick={() => router.push("/sw/postagem") } className=" justify-center items-center w-[20vh] -ml-[12vh] bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-medium py-3 rounded-xl transition-colors">
+                <button onClick={() => router.push("/sw/postagem") } className="cursor-pointer justify-center items-center w-[20vh] -ml-[12vh] bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-medium py-3 rounded-xl transition-colors">
                     Enviar mensagem
                 </button>
                 </div>
@@ -68,7 +68,7 @@ export default function BoxPacienteSelecionado({ paciente }: Props) {
                 <h3 className="text-indigo-600 font-semibold text-base">Informações da consulta</h3>
 
                 <div className="flex flex-col gap-4">
-                    <Campo label="Profissional" valor="Dr. Letícia Yumi" />
+                    <Campo label="Profissional" valor="Dra. Clara Guedes" />
                     <div className="flex gap-8">
                         <Campo label="Data" valor="23/09/2024" />
                         <Campo label="Hora" valor="9:00" />
