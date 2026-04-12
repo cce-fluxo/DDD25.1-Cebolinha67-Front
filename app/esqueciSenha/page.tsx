@@ -13,7 +13,7 @@ export default function EsqueciMinhaSenha(){
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [erro, setErro] = useState("");
-
+    // Função que conecta com o back, chama a função esqueceu-senha e encaminha o usuário para próxima página se email for validado
     async function handleContinuar() {
         if (!email.trim()) {
             setErro("Por favor, insira seu e-mail.");
@@ -24,16 +24,18 @@ export default function EsqueciMinhaSenha(){
         setLoading(true);
  
         try {
-            await api.post(`/auth/esqueceu-senha`, {
+            const response = await api.post(`/auth/esqueceu-senha`, {
                 email_usuario: email,
             });
- 
+            // Troca o console.log por alert para forçar aparecer
+            alert(JSON.stringify(response.data));
             // Salva o email no sessionStorage para usar na tela 3 (opcional, para UX)
             sessionStorage.setItem("reset_email", email);
  
             router.push("/esqueciSenha2");
         } catch (error: any) {
             const mensagem =
+                //mensagem de erro do back        //mensagem de erro setada no front
                 error?.response?.data?.message || "Erro ao enviar o e-mail. Tente novamente mais tarde.";
             setErro(mensagem);
         } finally {
