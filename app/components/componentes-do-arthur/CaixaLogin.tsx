@@ -5,10 +5,11 @@ import InputBox from "./InputBox";
 import BotaoEntrar from "./BotaoEntrar";
 import ToggleLogin from "./ToggleLogin";
 import EsqueciSenha from "./EsqueciSenha";
-import { login } from "@/lib/api";
+import { useAuth } from "@/app/context/AuthContext";
 
 export function CaixaLogin() {
   const router = useRouter()
+  const { login } = useAuth()
   const [email, setEmail] = useState("")
   const [senha, setSenha] = useState("")
   const [erro, setErro] = useState("")
@@ -16,8 +17,7 @@ export function CaixaLogin() {
   async function handleLogin() {
     setErro("")
     try {
-      const { access_token } = await login(email, senha)
-      localStorage.setItem("access_token", access_token)
+      await login(email, senha)
       router.push("/sw/home")
     } catch {
       setErro("E-mail ou senha inválidos.")
