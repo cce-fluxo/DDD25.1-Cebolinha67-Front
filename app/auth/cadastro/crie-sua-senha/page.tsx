@@ -49,7 +49,7 @@ export default function CrieSuaSenha() {
                                     <p>senha</p>
                                 </div>
                             </div>
-                            <InputBar type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
+                            <InputBar type="password" placeholder="Senha" value={senha} onBlur={} onChange={(e) => setSenha(e.target.value)} />
                             <InputBar type="password" placeholder="Confirme sua senha" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} />
                             {erro && <p className="text-red-500 text-sm text-center">{erro}</p>}
                             <CriarContaCancelarButton habilitado={!!senhasBatem} onCriarConta={handleCriarConta} />

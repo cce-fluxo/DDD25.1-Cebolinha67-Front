@@ -41,22 +41,22 @@ export default function Cadastro(){
             <div className='flex flex-col gap-4'>
       <form onSubmit={formik.handleSubmit} className='flex flex-col gap-4'>
         <InputBar name="nome" placeholder='Nome' value={formik.values.nome} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
-        {formik.touched.nome && formik.errors.nome && <span>{formik.errors.nome}</span>}
+        {formik.touched.nome && formik.errors.nome && <span className="text-red-500 text-xs">{formik.errors.nome}</span>}
 
         <InputBar name='sobrenome' placeholder='Sobrenome' value={formik.values.sobrenome} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
-        {formik.touched.sobrenome && formik.errors.sobrenome && <span>{formik.errors.sobrenome}</span>}
+        {formik.touched.sobrenome && formik.errors.sobrenome && <span className="text-red-500 text-xs">{formik.errors.sobrenome}</span>}
 
         <InputBar type="date" placeholder='dia/mes/ano' name='data' value={formik.values.data} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
-        {formik.touched.data && formik.errors.data && <span>{formik.errors.data}</span>}
+        {formik.touched.data && formik.errors.data && <span className="text-red-500 text-xs">{formik.errors.data}</span>}
 
         <InputBar name='email' placeholder='Email' value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
-        {formik.touched.email && formik.errors.email && <span>{formik.errors.email}</span>}
+        {formik.touched.email && formik.errors.email && <span className="text-red-500 text-xs">{formik.errors.email}</span>}
 
         <InputBar name='cpf' placeholder='CPF' value={formik.values.cpf} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
-        {formik.touched.cpf && formik.errors.cpf && <span>{formik.errors.cpf}</span>}
+        {formik.touched.cpf && formik.errors.cpf && <span className="text-red-500 text-xs">{formik.errors.cpf}</span>}
 
         <InputBar name='numero_de_celular' placeholder='Número de celular' value={formik.values.numero_de_celular} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
-        {formik.touched.numero_de_celular && formik.errors.numero_de_celular && <span>{formik.errors.numero_de_celular}</span>}
+        {formik.touched.numero_de_celular && formik.errors.numero_de_celular && <span className="text-red-500 text-xs">{formik.errors.numero_de_celular}</span>}
       </form>
       </div>
       <VoltarContinuarButton habilitado={formik.isValid && formik.dirty} onContinuar={() => formik.submitForm()}></VoltarContinuarButton>
