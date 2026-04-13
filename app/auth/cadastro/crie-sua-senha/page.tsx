@@ -8,58 +8,49 @@ import InputBar from "@/app/components/inputs/InputBar";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { criarUsuario } from "@/lib/api";
+import { useFormik } from "formik";
+import { schemaSenha } from "./crieSuaSenhaSchema";
+import { stringify } from "querystring";
 
-export default function CrieSuaSenha() {
+export default function CrieSuaSenha(){
     const router = useRouter()
-    const [senha, setSenha] = useState("")
-    const [confirmarSenha, setConfirmarSenha] = useState("")
-    const [erro, setErro] = useState("")
 
-    const senhasBatem = senha && confirmarSenha && senha === confirmarSenha
+    const formik = useFormik({
+      initialValues:{
+        senha:"", 
+        confirme_sua_senha: "", 
+      }, validationSchema: schemaSenha, 
+      onSubmit:(values) => {
+        sessionStorage.setItem("cadastro_senha", JSON.stringify({
+            senha: values.senha
+        }))
+        router.push("/sw/home")
+      } 
+    })
 
-    async function handleCriarConta() {
-        setErro("")
-        const raw = sessionStorage.getItem("cadastro_dados")
-        if (!raw) {
-            setErro("Dados do cadastro não encontrados. Volte e preencha novamente.")
-            return
-        }
-        const dados = JSON.parse(raw)
-        try {
-            await criarUsuario({ ...dados, senha_usuario: senha })
-            sessionStorage.removeItem("cadastro_dados")
-            router.push("/sw/home")
-        } catch (e: unknown) {
-            setErro(e instanceof Error ? e.message : "Erro ao criar conta.")
-        }
-    }
-
-    return (
+    return(
         <div>
-            <HeaderSignOut />
+            <HeaderSignOut></HeaderSignOut>
             <BackgroundSignOut>
-                <div>
-                    <CrieSuaSenhaBox>
-                        <div className="flex flex-col gap-4">
-                            <div className="flex flex-row justify-center items-center gap-1 mt-5">
-                                <div className="">
-                                    <p className="text-black font-bold -mt-8">Crie sua</p>
-                                </div>
-                                <div className="text-indigo-500 font-bold font-lato -mt-10">
-                                    <p>senha</p>
-                                </div>
-                            </div>
-                            <InputBar type="password" placeholder="Senha" value={senha} onBlur={} onChange={(e) => setSenha(e.target.value)} />
-                            <InputBar type="password" placeholder="Confirme sua senha" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} />
-                            {erro && <p className="text-red-500 text-sm text-center">{erro}</p>}
-                            <CriarContaCancelarButton habilitado={!!senhasBatem} onCriarConta={handleCriarConta} />
-                        </div>
-                    </CrieSuaSenhaBox>
-                </div>
+                <CrieSuaSenhaBox>
+                    <div className="flex flex-row gap-1 justify-center items-center">
+                        <p className="font-bold text-black">Crie sua</p>
+                        <p className="font-bold text-indigo-600">senha</p>
+                    </div>
+                    <div className="mt-7.5">
+                    <form onSubmit={formik.handleChange} className="flex flex-col gap-4 -mt-8">
+                        <InputBar name="senha" placeholder="Senha" value={formik.values.senha} onChange={formik.handleChange} onBlur={formik.handleBlur}></InputBar>
+                        {formik.touched.senha && formik.errors.senha && <span className="text-red-500 text-xs">{formik.errors.senha}</span>}
+
+                        <InputBar name="confirme_sua_senha" placeholder="Confirme sua senha" value={formik.values.confirme_sua_senha} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                        {formik.touched.confirme_sua_senha && formik.errors.confirme_sua_senha && <span className="text-red-500 text-xs">{formik.errors.confirme_sua_senha}</span>}
+
+                    </form>
+                    </div>
+
+                    <CriarContaCancelarButton habilitado={formik.isValid && formik.dirty} onCriarConta={() => formik.submitForm()}></CriarContaCancelarButton>
+                </CrieSuaSenhaBox>
             </BackgroundSignOut>
         </div>
     )
 }
-
-
-// faz o POST pra criação do usuário 
