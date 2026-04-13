@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation'
 import {schema} from './cadastroSchema'
 import InputBar from '@/app/components/inputs/InputBar'
 import VoltarContinuarButton from '@/app/components/buttons/VoltarContinuarButton'
+import BackgroundSignOut from "@/app/components/backgrounds/BackgroundSignOut";
+import HeaderSignOut from "@/app/components/headers-use-as-da-home-nao-essas/HeaderSignOut";
+import CadastroBox from '@/app/components/boxes/CadastroBox'
 
 export default function Cadastro(){
   const router = useRouter()
@@ -32,27 +35,35 @@ export default function Cadastro(){
   })
     return(
       <div>
-      <form onSubmit={formik.handleSubmit}>
-        <InputBar name="nome" value={formik.values.nome} onChange={formik.handleChange}/>
-        {formik.errors.nome && <span>{formik.errors.nome}</span>}
+        <HeaderSignOut />
+        <BackgroundSignOut>
+          <CadastroBox>
+            <div className='flex flex-col gap-4'>
+      <form onSubmit={formik.handleSubmit} className='flex flex-col gap-4'>
+        <InputBar name="nome" placeholder='Nome' value={formik.values.nome} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+        {formik.touched.nome && formik.errors.nome && <span>{formik.errors.nome}</span>}
 
-        <InputBar name='sobrenome' value={formik.values.sobrenome} onChange={formik.handleChange} />
-        {formik.errors.sobrenome && <span>{formik.errors.sobrenome}</span>}
+        <InputBar name='sobrenome' placeholder='Sobrenome' value={formik.values.sobrenome} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+        {formik.touched.sobrenome && formik.errors.sobrenome && <span>{formik.errors.sobrenome}</span>}
 
-        <InputBar type="date" name='data' value={formik.values.data} onChange={formik.handleChange}/>
-        {formik.errors.data && <span>{formik.errors.data}</span>}
+        <InputBar type="date" placeholder='dia/mes/ano' name='data' value={formik.values.data} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+        {formik.touched.data && formik.errors.data && <span>{formik.errors.data}</span>}
 
-        <InputBar name='email' value={formik.values.email} onChange={formik.handleChange} />
-        {formik.errors.email && <span>{formik.errors.email}</span>}
+        <InputBar name='email' placeholder='Email' value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+        {formik.touched.email && formik.errors.email && <span>{formik.errors.email}</span>}
 
-        <InputBar name='cpf' value={formik.values.cpf} onChange={formik.handleChange}></InputBar>
-        {formik.errors.cpf && <span>{formik.errors.cpf}</span>}
+        <InputBar name='cpf' placeholder='CPF' value={formik.values.cpf} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+        {formik.touched.cpf && formik.errors.cpf && <span>{formik.errors.cpf}</span>}
 
-        <InputBar name='numero_de_celular' value={formik.values.numero_de_celular} onChange={formik.handleChange}/>
-        {formik.errors.numero_de_celular && <span>{formik.errors.numero_de_celular}</span>}
+        <InputBar name='numero_de_celular' placeholder='Número de celular' value={formik.values.numero_de_celular} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+        {formik.touched.numero_de_celular && formik.errors.numero_de_celular && <span>{formik.errors.numero_de_celular}</span>}
       </form>
-      <VoltarContinuarButton habilitado={formik.isValid && formik.dirty} onContinuar={() => formik.submitForm()}></VoltarContinuarButton>
       </div>
+      <VoltarContinuarButton habilitado={formik.isValid && formik.dirty} onContinuar={() => formik.submitForm()}></VoltarContinuarButton>
+      
+      </CadastroBox>
 
+      </BackgroundSignOut>
+      </div>
     )
 }
