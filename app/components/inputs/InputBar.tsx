@@ -3,16 +3,18 @@ interface InputBarProps {
   type?: string
   placeholder?: string
   value: string
-  onChange: (value: string) => void
+  name?: string
+  onChange: React.ChangeEventHandler<HTMLInputElement>
 }
 
-export default function InputBar({ type = "", placeholder = "", value, onChange }: InputBarProps) {
+export default function InputBar({ type = "", placeholder = "", value, name, onChange }: InputBarProps) {
   return (
     <div className="flex w-full px-3.5 py-2.5 justify-between items-center rounded-[10px] border-[1.5px] border-[#B5B5B5]">
       <input
         type={type}
+        name={name}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={onChange}
         placeholder={placeholder}
         className="flex-1 bg-transparent text-sm text-zinc-800 placeholder:text-zinc-400 outline-none"
       />

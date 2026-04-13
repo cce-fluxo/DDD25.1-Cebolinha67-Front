@@ -1,68 +1,58 @@
 "use client"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import CadastroBox from '../../components/boxes/CadastroBox'
-import HeaderSignOut from '../../components/headers-use-as-da-home-nao-essas/HeaderSignOut'
-import InputBar from '../../components/inputs/InputBar'
-import BackgroundSignOut from '../../components/backgrounds/BackgroundSignOut'
-import VoltarContinuarButton from '../../components/buttons/VoltarContinuarButton'
 
-type Genero = 'Masculino' | 'Feminino' | 'Outros' | 'NaoInformado'
+import {useFormik} from 'formik'
+import { useRouter } from 'next/navigation'
+import {schema} from './cadastroSchema'
+import InputBar from '@/app/components/inputs/InputBar'
+import VoltarContinuarButton from '@/app/components/buttons/VoltarContinuarButton'
 
-export default function Cadastro() {
+export default function Cadastro(){
   const router = useRouter()
-  const [nome, setNome] = useState("")
-  const [sobrenome, setSobrenome] = useState("")
-  const [data, setData] = useState("")
-  const [email, setEmail] = useState("")
-  const [cpf, setCpf] = useState("")
-  const [celular, setCelular] = useState("")
-  const [genero, setGenero] = useState<Genero | "">("")
 
-  const todosPreenchidos = nome && sobrenome && data && email && cpf && celular && genero
+  const formik = useFormik({
+    initialValues:{
+      nome:"",
+      sobrenome: "",
+      data:"",
+      email: "",
+      cpf: "",
+      numero_de_celular: "",
+    },
+    validationSchema: schema, // aqui ele vai ver se a galera que eu colocar bate com os atributos do meu yup schema
+    onSubmit: (values) =>{
+      sessionStorage.setItem("cadastro_dados" , JSON.stringify({
+        no_usuario: `${values.nome} ${values.sobrenome}`,
+        email_usuario: values.email,
+        cpf: values.cpf,
+        nu_celular : values.numero_de_celular,
+        data_nascimento: values.data,
+      }))
+      router.push("/auth/cadastro/crie-sua-senha")
+    }
+  })
+    return(
+      <div>
+      <form onSubmit={formik.handleSubmit}>
+        <InputBar name="nome" value={formik.values.nome} onChange={formik.handleChange}/>
+        {formik.errors.nome && <span>{formik.errors.nome}</span>}
 
-  function handleContinuar() {
-    sessionStorage.setItem("cadastro_dados", JSON.stringify({
-      no_usuario: `${nome} ${sobrenome}`,
-      email_usuario: email,
-      cpf,
-      nu_celular: celular,
-      genero,
-      data_nascimento: data,
-    }))
-    router.push("/auth/cadastro/crie-sua-senha")
-  }
+        <InputBar name='sobrenome' value={formik.values.sobrenome} onChange={formik.handleChange} />
+        {formik.errors.sobrenome && <span>{formik.errors.sobrenome}</span>}
 
-  return (
-    <div className="min-h-screen w-full">
-      <HeaderSignOut />
-      <BackgroundSignOut>
-        <CadastroBox>
-          <div className='flex flex-col gap-4'>
-            <InputBar type='text' placeholder='Nome' value={nome} onChange={setNome} />
-            <InputBar type='text' placeholder='Sobrenome' value={sobrenome} onChange={setSobrenome} />
-            <InputBar type="date" placeholder='Dia / Mês / Ano' value={data} onChange={setData} />
-            <InputBar type='email' placeholder='E-mail' value={email} onChange={setEmail} />
-            <InputBar type="number" placeholder='CPF' value={cpf} onChange={setCpf} />
-            <InputBar type='number' placeholder='Número de Celular' value={celular} onChange={setCelular} />
-            <select
-              value={genero}
-              onChange={(e) => setGenero(e.target.value as Genero)}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 text-gray-700"
-            >
-              <option value="" disabled>Gênero</option>
-              <option value="Masculino">Masculino</option>
-              <option value="Feminino">Feminino</option>
-              <option value="Outros">Outros</option>
-              <option value="NaoInformado">Prefiro não informar</option>
-            </select>
-          </div>
-          <VoltarContinuarButton habilitado={!!todosPreenchidos} onContinuar={handleContinuar} />
-        </CadastroBox>
-      </BackgroundSignOut>
-    </div>
-  )
+        <InputBar type="date" name='data' value={formik.values.data} onChange={formik.handleChange}/>
+        {formik.errors.data && <span>{formik.errors.data}</span>}
+
+        <InputBar name='email' value={formik.values.email} onChange={formik.handleChange} />
+        {formik.errors.email && <span>{formik.errors.email}</span>}
+
+        <InputBar name='cpf' value={formik.values.cpf} onChange={formik.handleChange}></InputBar>
+        {formik.errors.cpf && <span>{formik.errors.cpf}</span>}
+
+        <InputBar name='numero_de_celular' value={formik.values.numero_de_celular} onChange={formik.handleChange}/>
+        {formik.errors.numero_de_celular && <span>{formik.errors.numero_de_celular}</span>}
+      </form>
+      <VoltarContinuarButton habilitado={formik.isValid && formik.dirty} onContinuar={() => formik.submitForm()}></VoltarContinuarButton>
+      </div>
+
+    )
 }
-
-
-// passo 6: foi adicionado um campo de gênero, e quando clica em Continuar todos os dados são salvos no session storage antes de navegar até o próximo passo 
