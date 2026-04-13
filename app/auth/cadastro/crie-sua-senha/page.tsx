@@ -5,27 +5,31 @@ import CriarContaCancelarButton from "@/app/components/buttons/CriarContaCancela
 import CrieSuaSenhaBox from "@/app/components/boxes/CrieSuaSenhaBox";
 import HeaderSignOut from "@/app/components/headers-use-as-da-home-nao-essas/HeaderSignOut";
 import InputBar from "@/app/components/inputs/InputBar";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { criarUsuario } from "@/lib/api";
 import { useFormik } from "formik";
 import { schemaSenha } from "./crieSuaSenhaSchema";
-import { stringify } from "querystring";
 
 export default function CrieSuaSenha(){
     const router = useRouter()
 
     const formik = useFormik({
       initialValues:{
-        senha:"", 
-        confirme_sua_senha: "", 
-      }, validationSchema: schemaSenha, 
-      onSubmit:(values) => {
-        sessionStorage.setItem("cadastro_senha", JSON.stringify({
-            senha: values.senha
-        }))
+        senha:"",
+        confirme_sua_senha: "",
+      }, validationSchema: schemaSenha,
+      onSubmit: async (values) => {
+        const dadosSalvos = JSON.parse(sessionStorage.getItem("cadastro_dados") ?? "{}")
+
+        await criarUsuario({
+          ...dadosSalvos,
+          senha_usuario: values.senha,
+          genero: "NaoInformado",
+        })
+
+        sessionStorage.removeItem("cadastro_dados")
         router.push("/sw/home")
-      } 
+      }
     })
 
     return(
