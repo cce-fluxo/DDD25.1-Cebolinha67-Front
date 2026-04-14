@@ -2,15 +2,19 @@
 
 import { Paciente } from "@/app/sw/consulta/ver-consultas-realizadas/page"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/app/context/AuthContext"
+import { Usuario } from "@/lib/api"
 
 
 interface Props {
     paciente: Paciente | null
+    dentista: Usuario | null
 }
 
-export default function BoxPacienteSelecionado({ paciente }: Props) {
+export default function BoxPacienteSelecionado({ paciente , dentista }: Props) {
 
     const router = useRouter()
+    const { usuario } = useAuth()
     if (!paciente) {
         return (
             <div className="flex-1 w-[80%] h-[91vh] mt-4 bg-white rounded-2xl flex items-center justify-center flex-col gap-2">
@@ -68,7 +72,7 @@ export default function BoxPacienteSelecionado({ paciente }: Props) {
                 <h3 className="text-indigo-600 font-semibold text-base">Informações da consulta</h3>
 
                 <div className="flex flex-col gap-4">
-                    <Campo label="Profissional" valor="Dra. Clara Guedes" />
+            <Campo label="Profissional" valor={dentista?.no_usuario?? ``} /> {/* no_usuario significa nome do usuário */}
                     <div className="flex gap-8">
                         <Campo label="Data" valor="23/09/2024" />
                         <Campo label="Hora" valor="9:00" />
@@ -82,6 +86,7 @@ export default function BoxPacienteSelecionado({ paciente }: Props) {
                     <Campo label="Descrição do paciente" valor="descricao" />
                     <Campo label="Tipo da Consulta" valor="Peridontia" />
                 </div>
+
 
                 <hr className="border-gray-400" />
 
@@ -99,7 +104,7 @@ export default function BoxPacienteSelecionado({ paciente }: Props) {
     )
 }
 
-function Campo({ label, valor }: { label: string; valor: string }) {
+function Campo({ label, valor }: { label: string; valor: any }) {
     return (
         <div className="flex flex-col gap-0.5">
             <span className="text-xs text-gray-400">{label}</span>

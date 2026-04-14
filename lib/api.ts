@@ -42,7 +42,7 @@ export interface CriarUsuarioPayload {
 
 export async function login(email: string, senha: string) {
   const { data } = await api.post<{ access_token: string }>('/auth/login', {
-    email_usuario: email,
+    email: email,
     senha_usuario: senha,
   })
   return data
