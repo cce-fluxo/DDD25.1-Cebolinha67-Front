@@ -34,7 +34,7 @@ export default function Cadastro(){
     }
   })
     return(
-      <div>
+      <div className='w-full h-screen'>
         <HeaderSignOut />
         <BackgroundSignOut>
           <CadastroBox>

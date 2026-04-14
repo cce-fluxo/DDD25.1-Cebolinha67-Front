@@ -21,7 +21,7 @@ export default function VerConsultasAgendadas() {
     const [pacienteSelecionado, setPacienteSelecionado] = useState<Paciente | null>(null)
 
     return (
-        <div className="bg-gray-200 h-full w-full">
+        <div className="bg-gray-200 min-h-screen w-full">
             <div className="flex gap-4 p-4">
                 <BoxAgendadas
                     abaAtiva="Realizadas"
