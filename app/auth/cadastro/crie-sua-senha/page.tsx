@@ -1,33 +1,76 @@
+"use client"
+
 import BackgroundSignOut from "@/app/components/backgrounds/BackgroundSignOut";
 import CriarContaCancelarButton from "@/app/components/buttons/CriarContaCancelarButton";
 import CrieSuaSenhaBox from "@/app/components/boxes/CrieSuaSenhaBox";
-import HeaderSignOut from "@/app/components/headers/HeaderSignOut";
-import InputBar from "@/app/components/InputBar";
+import HeaderSignOut from "@/app/components/headers-use-as-da-home-nao-essas/HeaderSignOut";
+import InputBar from "@/app/components/inputs/InputBar";
+import { useRouter } from "next/navigation";
+import { criarUsuario } from "@/lib/api";
+import { useFormik } from "formik";
+import { schemaSenha } from "./crieSuaSenhaSchema";
+import { useAuth } from "@/app/context/AuthContext";
+import { useState } from "react";
 
 export default function CrieSuaSenha(){
-    return (
+    const router = useRouter()
+    const { login } = useAuth()
+    const [erroCadastro, setErroCadastro] = useState<string | null>(null)
+
+    const formik = useFormik({
+      initialValues:{
+        senha:"",
+        confirme_sua_senha: "",
+      }, validationSchema: schemaSenha,
+      onSubmit: async (values) => {
+        const raw = sessionStorage.getItem("cadastro_dados")
+        if (!raw) {
+          router.push("/auth/cadastro")
+          return
+        }
+        const dadosSalvos = JSON.parse(raw)
+
+        try {
+          await criarUsuario({
+            ...dadosSalvos,
+            senha_usuario: values.senha,
+            genero: "NaoInformado",
+          })
+
+          await login(dadosSalvos.email_usuario, values.senha)
+
+          sessionStorage.removeItem("cadastro_dados")
+          router.push("/sw/home")
+        } catch (error: any) {
+          setErroCadastro(error.message)
+        }
+      }
+    })
+
+    return(
         <div>
             <HeaderSignOut></HeaderSignOut>
             <BackgroundSignOut>
-                    <div>
-                    <CrieSuaSenhaBox>
-                    <div className="flex flex-col gap-4">
-                    <div className="flex flex-row justify-center items-center gap-1 mt-5">
-                        <div className="">
-                        <p className="text-black font-bold -mt-8">Crie sua</p>
-                        </div>
-                        <div className="text-indigo-500 font-bold font-lato -mt-10">
-                            <p>senha</p>
-                        </div>
+                <CrieSuaSenhaBox>
+                    <div className="flex flex-row gap-1 justify-center items-center">
+                        <p className="font-bold text-black">Crie sua</p>
+                        <p className="font-bold text-indigo-600">senha</p>
                     </div>
-                    <InputBar type="text" placeholder="Senha" />
-                    <InputBar type="text" placeholder="Confirme sua senha"/>
+                    <div className="mt-7.5">
+                    <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4 -mt-8">
+                        <InputBar name="senha" placeholder="Senha" value={formik.values.senha} onChange={formik.handleChange} onBlur={formik.handleBlur}></InputBar>
+                        {formik.touched.senha && formik.errors.senha && <span className="text-red-500 text-xs">{formik.errors.senha}</span>}
 
-                    <CriarContaCancelarButton></CriarContaCancelarButton>
+                        <InputBar name="confirme_sua_senha" placeholder="Confirme sua senha" value={formik.values.confirme_sua_senha} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                        {formik.touched.confirme_sua_senha && formik.errors.confirme_sua_senha && <span className="text-red-500 text-xs">{formik.errors.confirme_sua_senha}</span>}
+
+                    </form>
+                    {erroCadastro && <span className="text-red-500 text-xs">{erroCadastro}</span>}
                     </div>
-                    </CrieSuaSenhaBox>
-                    </div>
+
+                    <CriarContaCancelarButton habilitado={formik.isValid && formik.dirty} onCriarConta={() => formik.submitForm()}></CriarContaCancelarButton>
+                </CrieSuaSenhaBox>
             </BackgroundSignOut>
         </div>
     )
-} // lembrar que eu fiz esse endpoint novo, vou ter que mudar coisas no back 
+}

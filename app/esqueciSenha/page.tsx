@@ -3,10 +3,10 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation";
 import { api } from "../../service/esqueciSenhaService";
-import BotaoEntrar from "../components/BotaoEntrar";
+import BotaoEntrar from "../components/componentes-do-arthur/BotaoEntrar";
 import BotaoVoltar from "../components/BotaoVoltar";
-import HeaderLogin from "../components/HeaderLogin";
-import InputBox from "../components/InputBox";
+import HeaderLogin from "../components/componentes-do-arthur/HeaderLogin";
+import InputBox from "../components/componentes-do-arthur/InputBox";
 
 export default function EsqueciMinhaSenha(){
     const router = useRouter();
@@ -58,9 +58,7 @@ export default function EsqueciMinhaSenha(){
                     placeholder="E-mail"
                     tipo="email"
                     value={email}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setEmail(e.target.value)
-                    }
+                    onChange={setEmail}
                 />
                 {erro && (
                     <span className="text-red-500 text-sm text-center">{erro}</span>

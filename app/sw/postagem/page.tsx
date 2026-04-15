@@ -2,7 +2,7 @@
 
 // Necessário para o ajuste de tamanho de placholder para o textarea
 import { useRef } from "react";
-import BotaoEntrar from "@/app/components/BotaoEntrar";
+import BotaoEntrar from "@/app/components/componentes-do-arthur/BotaoEntrar";
 
 export default function HomePage() {
   return <main className="flex justify-center pt-8">
