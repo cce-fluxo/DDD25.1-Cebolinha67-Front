@@ -62,9 +62,9 @@ export default function EsqueciMinhaSenha(){
         <PopUp
             título="Senha redefinida com sucesso!"
             BotaoTexto="Voltar para login"
-            onPressBotao={() => router.push("/login")}
+            onPressBotao={() => router.push("/")}
             isVisible={showPopup}
-            toggleModal={() => router.push("/login")}
+            toggleModal={() => router.push("/")}
         />
         <HeaderLogin />
         <div className="flex w-145.75 h-124.75 flex-col items-center gap-14.5 rounded-xl bg-white border-72 border-white">

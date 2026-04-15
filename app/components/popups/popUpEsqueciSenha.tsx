@@ -10,7 +10,6 @@ interface PopUpProps {
     isVisible: boolean;
     toggleModal: () => void;
     children?: React.ReactNode;
-    
 }
 
 export default function PopUp({
