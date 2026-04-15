@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import BotaoEntrar from '../BotaoEntrar';
+import BotaoEntrar from '../componentes-do-arthur/BotaoEntrar';
 
 interface PopUpProps {
     título: string;

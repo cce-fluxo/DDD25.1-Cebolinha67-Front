@@ -2,10 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { api } from "../../service/esqueciSenhaService";
-import BotaoEntrar from "../components/BotaoEntrar";
+import BotaoEntrar from "../components/componentes-do-arthur/BotaoEntrar";
 import BotaoVoltar from "../components/BotaoVoltar";
-import HeaderLogin from "../components/HeaderLogin";
-import InputBox from "../components/InputBox";
+import HeaderLogin from "../components/componentes-do-arthur/HeaderLogin";
+import InputBox from "../components/componentes-do-arthur/InputBox";
 import { useState } from "react";
 import PopUp from "../components/popups/popUpEsqueciSenha";
 
@@ -78,17 +78,13 @@ export default function EsqueciMinhaSenha(){
                     placeholder="Nova Senha"
                     tipo="password"
                     value={novaSenha}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setNovaSenha(e.target.value)
-                    }
+                    onChange={setNovaSenha}
                 />
                 <InputBox
                     placeholder="Confirmar Senha"
                     tipo="password"
                     value={confirmarSenha}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setConfirmarSenha(e.target.value)
-                    }
+                    onChange={setConfirmarSenha}
                 />
                 {erro && (
                     <span className="text-red-500 text-sm">{erro}</span>

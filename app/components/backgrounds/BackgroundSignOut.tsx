@@ -8,8 +8,8 @@ export default function BackgroundSignOut({ children }: { children: React.ReactN
         viewBox="-434 0 2250 900"
         fill="none"
         preserveAspectRatio="none"
-        className="absolute -bottom-1/2 -translate-y-1/2 z-0 w-[150%] h-[80vh]"
-      >
+        className="fixed top-[20%] z-0 w-full h-auto"
+      >{/* w-full e h-auto é o segredo pra nao correr o bug do sorriso sair do background e o bg tbm não acabar */}
         <path
           fillRule="evenodd"
           clipRule="evenodd"

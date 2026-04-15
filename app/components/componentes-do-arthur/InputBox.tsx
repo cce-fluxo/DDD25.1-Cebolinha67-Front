@@ -3,7 +3,7 @@ interface InputBoxProps {
   tipo: Tipo;
   visibilidade?: boolean;
   value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (v: string) => void;
 }
 
 type Tipo = "email" | "password" | "string";
@@ -16,8 +16,10 @@ export default function InputBox(props: InputBoxProps) {
         type={props.tipo}
         placeholder={props.placeholder}
         value={props.value}
-        onChange={props.onChange}
+        onChange={(e) => props.onChange?.(e.target.value)}
       />
     </>
   );
 }
+
+// passo 4 da integração: adicionado value e onChange para o input de login funcionar como um componente controlado 

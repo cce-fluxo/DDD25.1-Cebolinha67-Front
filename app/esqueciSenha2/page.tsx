@@ -2,10 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { api } from "../../service/esqueciSenhaService";
-import BotaoEntrar from "../components/BotaoEntrar";
+import BotaoEntrar from "../components/componentes-do-arthur/BotaoEntrar";
 import BotaoVoltar from "../components/BotaoVoltar";
-import HeaderLogin from "../components/HeaderLogin";
-import InputBox from "../components/InputBox";
+import HeaderLogin from "../components/componentes-do-arthur/HeaderLogin";
+import InputBox from "../components/componentes-do-arthur/InputBox";
 import { useState } from "react";
 
 export default function EsqueciMinhaSenha(){
@@ -53,9 +53,7 @@ export default function EsqueciMinhaSenha(){
                     placeholder="Código"
                     tipo="string"
                     value={token}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setToken(e.target.value)
-                    }
+                    onChange={setToken}
                 />
                 {erro && (
                     <span className="text-red-500 text-sm">{erro}</span>

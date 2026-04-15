@@ -3,7 +3,7 @@
 import { useRef, useState, useCallback } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import BotaoEntrar from "@/app/components/BotaoEntrar";
+import BotaoEntrar from "@/app/components/componentes-do-arthur/BotaoEntrar";
 import {
   criarPostagemGeral,
   criarPostagemIndividual,
