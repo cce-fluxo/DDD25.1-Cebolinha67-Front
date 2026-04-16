@@ -45,14 +45,14 @@ export default function CrieSuaSenha(){
           setpopUpIsOpen(true)
           setTimeout(()=> {
             router.push("/sw/home")
-          },3000)
+          },50000)
                 } catch (error: any) {
           setErroCadastro(error.message)
         }
       }
     })
 
-// coloquei o set timeout pro popup só aparecer por um tempo específico na tela 
+// coloquei o set timeout pro popup só aparecer por um tempo específico na tela, EU COLOQUEI MAIS PRA TESTAR, LEMBRAR DISSO DEPOIS 
 
     return(
         <div>
@@ -77,7 +77,9 @@ export default function CrieSuaSenha(){
 
                     <CriarContaCancelarButton habilitado={formik.isValid && formik.dirty} onCriarConta={() => formik.submitForm()}></CriarContaCancelarButton>
                 </CrieSuaSenhaBox>
-              <PopUp título="Conta criada com sucesso!" BotaoTexto="" onPressBotao={() => null} isVisible={popUpIsOpen} toggleModal={()=> "sim"} children></PopUp> {/* continuar o popup */ }
+                <div className="flex items-center justify-center">
+              <PopUp título="Conta criada com sucesso. Seja bem vindo!" BotaoTexto="" onPressBotao={() => null} isVisible={popUpIsOpen} toggleModal={()=> "sim"} children></PopUp> {/* continuar o popup */ }
+              </div>
             </BackgroundSignOut>
         </div>
     )
