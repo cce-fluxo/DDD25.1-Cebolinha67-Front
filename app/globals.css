@@ -10,6 +10,7 @@
   --gray-divider: #696969;
 }
 
+/* esse cara aqui vai ser as fontes padrão do site em todos os casos  */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

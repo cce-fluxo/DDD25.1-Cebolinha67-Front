@@ -72,7 +72,8 @@ export default function BoxPacienteSelecionado({ paciente , dentista }: Props) {
                 <h3 className="text-indigo-600 font-semibold text-base">Informações da consulta</h3>
 
                 <div className="flex flex-col gap-4">
-            <Campo label="Profissional" valor={`Dr.${usuario?.no_usuario}`} /> {/* no_usuario significa nome do usuário, lembrar das backticks pra colocar uma variável */}
+            <Campo label="Profissional" valor={`Dr.${
+                usuario?.no_usuario}`} /> {/* no_usuario significa nome do usuário, lembrar das backticks pra colocar uma variável */}
                     <div className="flex gap-8">
                         <Campo label="Data" valor="23/09/2024" />
                         <Campo label="Hora" valor="9:00" />
