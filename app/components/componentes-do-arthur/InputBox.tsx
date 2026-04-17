@@ -6,7 +6,7 @@ interface InputBoxProps {
   onChange?: (v: string) => void;
 }
 
-type Tipo = "email" | "password";
+type Tipo = "email" | "password" | "string";
 
 export default function InputBox(props: InputBoxProps) {
   return (
