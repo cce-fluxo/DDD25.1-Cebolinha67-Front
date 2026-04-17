@@ -21,3 +21,8 @@ body {
   color: var(--foreground);
 }
 
+.simplebar-scrollbar::before {
+    background-color: #6366f1 !important;
+    border-radius: 9999px !important;
+    opacity: 1 !important;
+}

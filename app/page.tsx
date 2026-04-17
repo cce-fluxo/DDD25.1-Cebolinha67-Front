@@ -1,7 +1,7 @@
-import HeaderLogin from "./components/HeaderLogin";
-import { CaixaLogin } from "./components/CaixaLogin";
-import MulherDentista from "./components/MulherDentista";
-import HomemNoPc from "./components/HomemNoPc";
+import HeaderLogin from "./components/componentes-do-arthur/HeaderLogin";
+import { CaixaLogin } from "./components/componentes-do-arthur/CaixaLogin";
+import MulherDentista from "./components/componentes-do-arthur/MulherDentista";
+import HomemNoPc from "./components/componentes-do-arthur/HomemNoPc";
 
 export default function Home() {
   return (
