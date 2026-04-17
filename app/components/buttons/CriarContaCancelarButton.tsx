@@ -1,5 +1,6 @@
 "use client"
 import { useRouter } from "next/navigation"
+import PopUp from "../popups/popupContaCriada"
 
 interface CriarContaCancelarButtonProps {
   habilitado: boolean
@@ -23,6 +24,10 @@ export default function CriarContaCancelarButton({ habilitado, onCriarConta }: C
         onClick={() => router.back()}
       >
         Cancelar
+      </button>
+
+    {/* botão de teste pro popup */}
+      <button className="bg-indigo-200 text-black py-2 rounded-xl w-40 cursor-pointer" onClick={() =>router.push("/popups")}>
       </button>
     </div>
   )

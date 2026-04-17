@@ -28,13 +28,12 @@ export default function PopUp({
             className="fixed inset-0 flex items-center justify-center bg-black/50 p-7"
             onClick={toggleModal}
         >
-            <div className='bg-white text-[#5754DE] gap-4 flex flex-col items-center justify-center rounded-lg p-7 h-auto'>
+            <div className='bg-white text-[#5754DE] gap-2 flex flex-col items-center justify-center rounded-lg p-4 h-auto'>
                 <div className='text-2xl items-center justify-center'>
                  {título}
-                 <img src={"/popupMulherCheck.png"} alt='pop up conta' className='w-1vh h-1vh justify-center items-center align-middle '></img>
+                 <Image src={"/popupMulherCheck.png"} alt='pop-up-mulher' width={80} height={80} className='mx-auto'></Image>
                 </div>
                 <div>
-                    
                 </div>
             </div>
         </div>
