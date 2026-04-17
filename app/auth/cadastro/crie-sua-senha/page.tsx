@@ -11,8 +11,10 @@ import { useFormik } from "formik";
 import { schemaSenha } from "./crieSuaSenhaSchema";
 import { useAuth } from "@/app/context/AuthContext";
 import { useState } from "react";
+import PopUp from "@/app/components/popups/popupContaCriada";
 
 export default function CrieSuaSenha(){
+    const [popUpIsOpen, setpopUpIsOpen] = useState(false)
     const router = useRouter()
     const { login } = useAuth()
     const [erroCadastro, setErroCadastro] = useState<string | null>(null)
@@ -40,12 +42,17 @@ export default function CrieSuaSenha(){
           await login(dadosSalvos.email_usuario, values.senha)
 
           sessionStorage.removeItem("cadastro_dados")
-          router.push("/sw/home")
-        } catch (error: any) {
+          setpopUpIsOpen(true)
+          setTimeout(()=> {
+            router.push("/sw/home")
+          },50000)
+                } catch (error: any) {
           setErroCadastro(error.message)
         }
       }
     })
+
+// coloquei o set timeout pro popup só aparecer por um tempo específico na tela, EU COLOQUEI MAIS PRA TESTAR, LEMBRAR DISSO DEPOIS 
 
     return(
         <div>
@@ -70,6 +77,9 @@ export default function CrieSuaSenha(){
 
                     <CriarContaCancelarButton habilitado={formik.isValid && formik.dirty} onCriarConta={() => formik.submitForm()}></CriarContaCancelarButton>
                 </CrieSuaSenhaBox>
+                <div className="flex items-center justify-center">
+              <PopUp título="Conta criada com sucesso. Seja bem vindo!" BotaoTexto="" onPressBotao={() => null} isVisible={popUpIsOpen} toggleModal={()=> "sim"} children></PopUp> {/* continuar o popup */ }
+              </div>
             </BackgroundSignOut>
         </div>
     )

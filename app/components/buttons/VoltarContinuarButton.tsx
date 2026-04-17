@@ -1,5 +1,7 @@
 "use client"
 import { useRouter } from "next/navigation"
+import PopUp from "../popups/popupContaCriada"
+import { useState } from "react"
 
 interface VoltarContinuarButtonProps {
   habilitado: boolean
@@ -8,6 +10,7 @@ interface VoltarContinuarButtonProps {
 
 export default function VoltarContinuarButton({ habilitado, onContinuar }: VoltarContinuarButtonProps) {
   const router = useRouter()
+  const [mostrarPopup, setMostrarPopup] = useState(false)
 
   return (
     <div className="flex gap-3 mt-8 md:mt-12 justify-center w-full">
@@ -24,6 +27,11 @@ export default function VoltarContinuarButton({ habilitado, onContinuar }: Volta
       >
         Continuar
       </button>
+
+      <button onClick={() => setMostrarPopup(true)}>
+        Abrir popup
+      </button>
+
     </div>
   )
 }
