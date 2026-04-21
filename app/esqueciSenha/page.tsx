@@ -13,6 +13,8 @@ export default function EsqueciMinhaSenha(){
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [erro, setErro] = useState("");
+
+    
     // Função que conecta com o back, chama a função esqueceu-senha e encaminha o usuário para próxima página se email for validado
     async function handleContinuar() {
         if (!email.trim()) {
