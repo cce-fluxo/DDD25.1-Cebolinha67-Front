@@ -8,6 +8,7 @@ import {
   criarPostagemGeral,
   criarPostagemIndividual,
 } from "@/service/postagemService";
+import PopUpMensagem from "@/app/components/popups/popUpMensagem";
 
 type TipoPostagem = "geral" | "individual";
 
@@ -25,6 +26,7 @@ export default function PostagemPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [submitError, setSubmitError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
 
   const editorRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -79,6 +81,7 @@ export default function PostagemPage() {
         }
 
         setSubmitSuccess(true);
+        setShowPopUp(true);
         resetForm();
         if (editorRef.current) editorRef.current.innerHTML = "";
         setImagePreview(null);
@@ -126,7 +129,9 @@ export default function PostagemPage() {
   };
 
   return (
+    <>
     <main className="flex justify-center pt-8 pb-8">
+      <PopUpMensagem título="Mensagem enviada com sucesso!" isVisible={showPopUp} toggleModal={() => setShowPopUp(false)} />
       <form
         onSubmit={formik.handleSubmit}
         className="bg-white flex w-184 flex-col items-center gap-5.5 border-2 border-[#696969] rounded-lg px-6 pt-4.5"
@@ -349,11 +354,13 @@ export default function PostagemPage() {
               <BotaoEntrar
                 texto={formik.isSubmitting ? "Enviando..." : "Enviar"}
                 cheio={true}
+                onClick={() => formik.handleSubmit()}
               />
             </div>
           </div>
         </div>
       </form>
     </main>
+    </>
   );
 }

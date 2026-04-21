@@ -8,6 +8,8 @@ import HeaderLogin from "../components/componentes-do-arthur/HeaderLogin";
 import InputBox from "../components/componentes-do-arthur/InputBox";
 import { useState } from "react";
 import PopUp from "../components/popups/popUpEsqueciSenha";
+import imagepopup from "../../public/popupimage.png";
+import Image from "next/image";
 
 export default function EsqueciMinhaSenha(){
     const router = useRouter();
@@ -61,6 +63,14 @@ export default function EsqueciMinhaSenha(){
     <div className="flex flex-col h-full w-full gap-18 items-center">
         <PopUp
             título="Senha redefinida com sucesso!"
+            imagem={
+                <Image
+                    src={imagepopup}           // you already imported this above!
+                    width={300}
+                    height={300}
+                    alt="Senha redefinida"
+                />
+            }
             BotaoTexto="Voltar para login"
             onPressBotao={() => router.push("/")}
             isVisible={showPopup}
