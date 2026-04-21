@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import type { ReactNode } from "react";
-import { Providers } from "./components/Providers";
 import "./globals.css";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "SorrySync",
@@ -23,9 +23,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${lato.variable} h-full`}>
       <body className="min-h-screen font-sans antialiased">
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
