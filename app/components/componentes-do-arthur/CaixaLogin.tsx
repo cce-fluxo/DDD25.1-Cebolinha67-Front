@@ -11,13 +11,13 @@ export function CaixaLogin() {
   const router = useRouter()
   const { login } = useAuth()
   const [email, setEmail] = useState("")
-  const [senha, setSenha] = useState("")
+  const [senha_usuario, setSenha] = useState("")
   const [erro, setErro] = useState("")
   
   async function handleLogin() {
     setErro("")
     try {
-      await login(email, senha)
+      await login(email, senha_usuario)
       router.push("/sw/home")
     } catch {
       setErro("E-mail ou senha inválidos.")
@@ -33,7 +33,7 @@ export function CaixaLogin() {
         <div className="flex w-112.5 flex-col items-center gap-6.75">
           <div className="flex flex-col items-start gap-4.5 self-stretch">
             <InputBox placeholder="E-mail" tipo="email" value={email} onChange={setEmail} />
-            <InputBox placeholder="Senha" tipo="password" value={senha} onChange={setSenha} />
+            <InputBox placeholder="Senha" tipo="password" value={senha_usuario} onChange={setSenha} />
           </div>
           {erro && <p className="text-red-500 text-sm">{erro}</p>}
           <div className="flex justify-between items-center self-stretch">

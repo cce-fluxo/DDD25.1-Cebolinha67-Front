@@ -45,7 +45,7 @@ export default function CrieSuaSenha(){
           setpopUpIsOpen(true)
           setTimeout(()=> {
             router.push("/sw/home")
-          },50000)
+          },3000)
                 } catch (error: any) {
           setErroCadastro(error.message)
         }
