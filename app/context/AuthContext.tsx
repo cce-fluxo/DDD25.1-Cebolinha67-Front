@@ -49,8 +49,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .finally(() => setCarregando(false))
   }, [])
 
-  async function login(email: string, senha: string) {
-    const { access_token } = await loginApi(email, senha)
+  async function login(email: string, senha_usuario: string) {
+    const { access_token } = await loginApi(email, senha_usuario)
     localStorage.setItem("access_token", access_token)
     const { id } = decodeJwt(access_token)
     const dadosUsuario = await getMe(id)

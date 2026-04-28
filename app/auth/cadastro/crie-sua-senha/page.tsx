@@ -52,7 +52,7 @@ export default function CrieSuaSenha(){
           setpopUpIsOpen(true)
           setTimeout(()=> {
             router.push("/sw/home")
-          },3000) //isso faz com que o popup só apareça por 3 segundos na tela, e depois ele vai pra home 
+          },3000)
                 } catch (error: any) {
           setErroCadastro(error.message)
         }

@@ -7,6 +7,9 @@ import BotaoVoltar from "../components/BotaoVoltar";
 import HeaderLogin from "../components/componentes-do-arthur/HeaderLogin";
 import InputBox from "../components/componentes-do-arthur/InputBox";
 import { useState } from "react";
+import PopUp from "../components/popups/popUpEsqueciSenha";
+import imagepopup from "../../public/popupimage.png";
+import Image from "next/image";
 
 export default function EsqueciMinhaSenha(){
     const router = useRouter();
@@ -14,6 +17,7 @@ export default function EsqueciMinhaSenha(){
     const [confirmarSenha, setConfirmarSenha] = useState("");
     const [loading, setLoading] = useState(false);
     const [erro, setErro] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
 
     async function handleContinuar() {
         if (!novaSenha.trim() || !confirmarSenha.trim()) {
@@ -44,7 +48,8 @@ export default function EsqueciMinhaSenha(){
             sessionStorage.removeItem("reset_token");
             sessionStorage.removeItem("reset_email");
 
-            router.push("/");
+            setShowPopup(true);
+            
         } catch (error: any) {
             const mensagem =
                 error?.response?.data?.message || "Erro ao redefinir a senha. Tente novamente.";
@@ -56,6 +61,21 @@ export default function EsqueciMinhaSenha(){
 
     return (
     <div className="flex flex-col h-full w-full gap-18 items-center">
+        <PopUp
+            título="Senha redefinida com sucesso!"
+            imagem={
+                <Image
+                    src={imagepopup}           // you already imported this above!
+                    width={300}
+                    height={300}
+                    alt="Senha redefinida"
+                />
+            }
+            BotaoTexto="Voltar para login"
+            onPressBotao={() => router.push("/")}
+            isVisible={showPopup}
+            toggleModal={() => router.push("/")}
+        />
         <HeaderLogin />
         <div className="flex w-145.75 h-124.75 flex-col items-center gap-14.5 rounded-xl bg-white border-72 border-white">
             {/*Conteúdo da box*/}
