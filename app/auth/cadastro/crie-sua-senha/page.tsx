@@ -34,13 +34,13 @@ export default function CrieSuaSenha(){
 
         try {
           await criarUsuario({
-          formacao: "NaoInformado",       // temporário até ter o formulário
+          formacao: "NaoInformado",       // coloquei uns dados de mentira já que o perfil ainda tá hard coded
           instituto: "NaoInformado",
           datainicio: new Date().toISOString(),
           datatermino: new Date().toISOString(),
           especializacao: "NaoInformado",
           usuario: {
-          ...dadosSalvos,
+          ...dadosSalvos, // vai pegar os dados tratados pelo formik e yup
           senha_usuario: values.senha,
           genero: "NaoInformado",
           }
@@ -52,14 +52,12 @@ export default function CrieSuaSenha(){
           setpopUpIsOpen(true)
           setTimeout(()=> {
             router.push("/sw/home")
-          },3000)
+          },3000) //isso faz com que o popup só apareça por 3 segundos na tela, e depois ele vai pra home 
                 } catch (error: any) {
           setErroCadastro(error.message)
         }
       }
     })
-
-// coloquei o set timeout pro popup só aparecer por um tempo específico na tela, EU COLOQUEI MAIS PRA TESTAR, LEMBRAR DISSO DEPOIS 
 
     return(
         <div>
