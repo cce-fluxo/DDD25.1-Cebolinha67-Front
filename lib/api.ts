@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { string } from 'yup'
 
 // Instância centralizada do axios com a URL base do backend
 const api = axios.create({
@@ -28,14 +29,21 @@ export default api
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
-export interface CriarUsuarioPayload {
-  no_usuario: string
-  email_usuario: string
-  senha_usuario: string
-  cpf: string
-  nu_celular: string
-  genero: 'Masculino' | 'Feminino' | 'Outros' | 'NaoInformado'
-  data_nascimento: string
+export interface CriarDentistaPayload {
+  formacao: string
+  instituto: string
+  datainicio: string
+  datatermino: string
+  especializacao : string
+  usuario: {
+      no_usuario: string
+      email_usuario: string
+      senha_usuario: string
+      cpf: string
+      nu_celular: string
+      genero: 'Masculino' | 'Feminino' | 'Outros' | 'NaoInformado'
+      data_nascimento: string  // ISO string
+    }
 }
 
 // ─── Funções de API ───────────────────────────────────────────────────────────
@@ -48,22 +56,32 @@ export async function login(email: string, senha_usuario: string) {
   return data
 }
 
-export async function criarUsuario(payload: CriarUsuarioPayload) {
-  const { data } = await api.post('/usuarios/criar', payload)
+export async function criarUsuario(payload: CriarDentistaPayload) {
+  const { data } = await api.post('/dentista/criar', payload)
   return data
 }
 
-export interface Usuario {
+export interface Dentista {
   id: number
-  no_usuario: string
-  email_usuario: string
-  cpf: string
-  nu_celular: string
-  genero: 'Masculino' | 'Feminino' | 'Outros' | 'NaoInformado'
-  data_nascimento: string
+  formacao: string
+  instituto: string
+  datainicio : string
+  datatermino : string
+  especializacao : string
+  usuario : {
+    id: number
+    no_usuario : string
+    email_usuario : string
+    cpf : string
+    nu_celular : string
+    genero: 'Masculino' | 'Feminino' | 'Outros' | 'NaoInformado'
+    data_nascimento: string
+  }
 }
 
-export async function getMe(id: number): Promise<Usuario> {
-  const { data } = await api.get<Usuario>(`/usuarios/unico/${id}`)
+export async function getMe(id: number): Promise<Dentista> {
+  const { data } = await api.get<Dentista>(`/usuarios/unico/${id}`)
   return data
 }
+
+

@@ -34,10 +34,17 @@ export default function CrieSuaSenha(){
 
         try {
           await criarUsuario({
-            ...dadosSalvos,
-            senha_usuario: values.senha,
-            genero: "NaoInformado",
-          })
+          formacao: "NaoInformado",       // temporário até ter o formulário
+          instituto: "NaoInformado",
+          datainicio: new Date().toISOString(),
+          datatermino: new Date().toISOString(),
+          especializacao: "NaoInformado",
+          usuario: {
+          ...dadosSalvos,
+          senha_usuario: values.senha,
+          genero: "NaoInformado",
+          }
+  })
 
           await login(dadosSalvos.email_usuario, values.senha)
 
@@ -45,7 +52,7 @@ export default function CrieSuaSenha(){
           setpopUpIsOpen(true)
           setTimeout(()=> {
             router.push("/sw/home")
-          },50000)
+          },3000)
                 } catch (error: any) {
           setErroCadastro(error.message)
         }
@@ -78,7 +85,7 @@ export default function CrieSuaSenha(){
                     <CriarContaCancelarButton habilitado={formik.isValid && formik.dirty} onCriarConta={() => formik.submitForm()}></CriarContaCancelarButton>
                 </CrieSuaSenhaBox>
                 <div className="flex items-center justify-center">
-              <PopUp título="Conta criada com sucesso. Seja bem vindo!" BotaoTexto="" onPressBotao={() => null} isVisible={popUpIsOpen} toggleModal={()=> "sim"} children></PopUp> {/* continuar o popup */ }
+              <PopUp título="Conta criada com sucesso. Seja bem vindo!" BotaoTexto="" onPressBotao={() => null} isVisible={popUpIsOpen} toggleModal={()=> setpopUpIsOpen(false)} children></PopUp> {/* continuar o popup */ }
               </div>
             </BackgroundSignOut>
         </div>
