@@ -38,12 +38,18 @@ export interface CriarUsuarioPayload {
   data_nascimento: string
 }
 
+export interface CriarDentistaPayload {
+  no_dentista: string
+  email_dentista: string
+
+}
+
 // ─── Funções de API ───────────────────────────────────────────────────────────
 
-export async function login(email: string, senha_usuario: string) {
+export async function login(email: string, senha: string) {
   const { data } = await api.post<{ access_token: string }>('/auth/login', {
-    email: email,
-    senha_usuario: senha_usuario,
+    email_usuario: email,
+    senha_usuario: senha,
   })
   return data
 }
@@ -61,6 +67,12 @@ export interface Usuario {
   nu_celular: string
   genero: 'Masculino' | 'Feminino' | 'Outros' | 'NaoInformado'
   data_nascimento: string
+}
+
+export interface Dentista {
+  id: number
+  no_dentista: string
+  email_dentista: string
 }
 
 export async function getMe(id: number): Promise<Usuario> {

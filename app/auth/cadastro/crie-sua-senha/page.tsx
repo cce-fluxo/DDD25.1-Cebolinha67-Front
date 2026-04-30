@@ -10,7 +10,7 @@ import { criarUsuario } from "@/lib/api";
 import { useFormik } from "formik";
 import { schemaSenha } from "./crieSuaSenhaSchema";
 import { useAuth } from "@/app/context/AuthContext";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PopUp from "@/app/components/popups/popupContaCriada";
 
 export default function CrieSuaSenha(){
@@ -18,6 +18,7 @@ export default function CrieSuaSenha(){
     const router = useRouter()
     const { login } = useAuth()
     const [erroCadastro, setErroCadastro] = useState<string | null>(null)
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
     const formik = useFormik({
       initialValues:{
@@ -43,10 +44,17 @@ export default function CrieSuaSenha(){
 
           sessionStorage.removeItem("cadastro_dados")
           setpopUpIsOpen(true)
-          setTimeout(()=> {
-            router.push("/sw/home")
-          },3000)
-                } catch (error: any) {
+          timerRef.current = setTimeout(() => {
+            router.push("/")
+          }, 3000)
+
+          // add a cleanup:
+          useEffect(() => {
+            return () => {
+              if (timerRef.current) clearTimeout(timerRef.current)
+            }
+          }, [])
+        } catch (error: any) {
           setErroCadastro(error.message)
         }
       }
@@ -78,8 +86,8 @@ export default function CrieSuaSenha(){
                     <CriarContaCancelarButton habilitado={formik.isValid && formik.dirty} onCriarConta={() => formik.submitForm()}></CriarContaCancelarButton>
                 </CrieSuaSenhaBox>
                 <div className="flex items-center justify-center">
-              <PopUp título="Conta criada com sucesso. Seja bem vindo!" BotaoTexto="" onPressBotao={() => null} isVisible={popUpIsOpen} toggleModal={()=> "sim"} children></PopUp> {/* continuar o popup */ }
-              </div>
+                  <PopUp título="Conta criada com sucesso. Seja bem vindo!" BotaoTexto="" onPressBotao={() => null} isVisible={popUpIsOpen} toggleModal={() => setpopUpIsOpen(false)}></PopUp> {/* continuar o popup */ }
+                </div>
             </BackgroundSignOut>
         </div>
     )
