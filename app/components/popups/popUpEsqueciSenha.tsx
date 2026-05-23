@@ -1,0 +1,48 @@
+'use client'
+
+import React from 'react';
+import BotaoEntrar from '../componentes-do-arthur/BotaoEntrar';
+
+interface PopUpProps {
+    título: string;
+    imagem?: React.ReactNode;
+    BotaoTexto: string;
+    onPressBotao: () => void;
+    isVisible: boolean;
+    toggleModal: () => void;
+    children?: React.ReactNode;
+}
+
+export default function PopUp({
+    título,
+    imagem,
+    BotaoTexto,
+    onPressBotao,
+    isVisible,
+    toggleModal,
+}: PopUpProps) {
+
+    if (!isVisible) return null;
+
+    return (
+        <div 
+            className="fixed inset-0 flex items-center justify-center bg-black/50 p-7"
+            onClick={toggleModal}
+        >
+            <div className='bg-white text-[#5754DE] gap-4 flex flex-col items-center justify-center rounded-lg p-7'>
+                <div className='text-2xl'>
+                    {título}
+                </div>
+                <div>
+                    {imagem}
+                </div>
+                <BotaoEntrar
+                    texto= {BotaoTexto}
+                    cheio={true}
+                    onClick={onPressBotao}
+                >
+                </BotaoEntrar>
+            </div>
+        </div>
+    )
+}
