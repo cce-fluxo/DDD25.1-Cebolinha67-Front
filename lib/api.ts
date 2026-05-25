@@ -1,9 +1,10 @@
 import axios from 'axios'
 
 // Instância centralizada do axios com a URL base do backend
+
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL, // http://localhost:3100
-})
+  baseURL: 'https://ddd25-1-cebolinha67-back.onrender.com'
+});
 
 // Interceptor de REQUEST: injeta o token JWT em toda requisição autenticada
 api.interceptors.request.use((config) => {
