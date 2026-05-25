@@ -48,10 +48,10 @@ export interface CriarDentistaPayload {
 
 // ─── Funções de API ───────────────────────────────────────────────────────────
 
-export async function login(email: string, senha_usuario: string) {
+export async function login(email: string, senha: string) {
   const { data } = await api.post<{ access_token: string }>('/auth/login', {
-    email: email,
-    senha_usuario: senha_usuario,
+    email_usuario: email,
+    senha_usuario: senha,
   })
   return data
 }

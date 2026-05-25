@@ -15,8 +15,6 @@ interface PopUpProps {
 
 export default function PopUp({
     título,
-    BotaoTexto,
-    onPressBotao,
     isVisible,
     toggleModal
 }: PopUpProps) {
