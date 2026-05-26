@@ -21,7 +21,7 @@ export default function VerConsultasRealizadas() {
     const linkClass = (rota: string) =>
         pathname.startsWith(rota)
             ? "text-indigo-700 font-bold px-4 py-2 rounded-lg cursor-pointer"
-            : "cursor-pointer text-gray-700"
+            : "cursor-pointer px-4 py-2 rounded-lg cursor-pointer text-gray-700"
 
     
     // parte de integração com back
@@ -35,10 +35,10 @@ export default function VerConsultasRealizadas() {
     }, [])
 
     return (
-        <div className="flex h-screen w-full">
-            <div className="flex w-[25%] h-[80%] flex-col gap-[4vh] bg-white border border-gray-300 rounded-2xl mt-[4vh] ml-[4vh] p-4">
+        <div className="flex h-screen w-full gap-[6vh]">
+            <div className="flex w-[25%] h-[80%] flex-col gap-[3vh] bg-white border border-gray-300 rounded-2xl mt-[4vh] ml-[4vh] p-4">
                 {/* botões */}
-                <div className="flex flex-row gap-[3vh] -ml-[5vh] justify-center mt-[2vh] items-center">
+                <div className="flex flex-row gap-[3vh] -ml-[1vh] justify-center mt-[2vh] items-center">
                     <button
                         className={linkClass("/sw/consulta/ver-consultas-agendadas")}
                         onClick={() => router.push("/sw/consulta/ver-consultas-agendadas")}
@@ -82,7 +82,13 @@ export default function VerConsultasRealizadas() {
 
             {/* agora fazer aquele retângulo grandão do lado, que nesse caso vai ser o sorriso de vc não selecionou nenhum paciente ainda */}
 
-            
+            <div className="flex w-[120vh] mt-[4vh] h-[80vh] px-52 justify-center items-center border border-solid border-gray-300 rounded-2xl bg-white">
+
+                <div className="flex justify-center items-center flex-col">
+                    <img className="w-[60%]" src={"/sorriso.png"} alt="sorriso do sorriSync"></img>
+                    <p className="flex self-stretch">Você ainda não selecionou nenhum paciente...</p>
+                </div>
+            </div>
         </div>
     )
 }
