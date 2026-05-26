@@ -36,7 +36,7 @@ export interface CriarUsuarioPayload {
   cpf: string
   nu_celular: string
   genero: 'Masculino' | 'Feminino' | 'Outros' | 'NaoInformado'
-  data_nascimento: string
+  data_nascimento: Date 
 }
 
 export interface CriarDentistaPayload {
