@@ -83,9 +83,8 @@ export default function VerConsultasRealizadas() {
             {/* agora fazer aquele retângulo grandão do lado, que nesse caso vai ser o sorriso de vc não selecionou nenhum paciente ainda */}
 
             <div className="flex w-[120vh] mt-[4vh] h-[80vh] px-52 justify-center items-center border border-solid border-gray-300 rounded-2xl bg-white">
-
-                
-            </div>
-        </div>
+                {/*vou fazer um componente pra essa parte de mostrar o cara com detalhes */}
+                    </div>
+                </div>
     )
 }

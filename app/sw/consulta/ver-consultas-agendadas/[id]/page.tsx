@@ -28,7 +28,7 @@ export default function VerConsultasRealizadas() {
 
     useEffect(() => {
         async function fetchConsultas() {
-            const res = await fetch('/consultas/ver-consulta') // colocar meu endpoint de consultas aqui
+            const res = await fetch('/consultas/ver-consulta') // colocar meu endpoint de consultas aqui, ele não realmente diferencia no back entre consulta marcada e agendada, eh foda
             const data = await res.json()
             setConsultas(data)
         }fetchConsultas()
