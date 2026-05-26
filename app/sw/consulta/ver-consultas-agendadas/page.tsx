@@ -38,16 +38,16 @@ export default function VerConsultasRealizadas() {
         <div className="flex h-screen w-full">
             <div className="flex w-[25%] h-[80%] flex-col gap-[4vh] bg-white border border-gray-300 rounded-2xl mt-[4vh] ml-[4vh] p-4">
                 {/* botões */}
-                <div className="flex flex-row gap-[7vh] justify-center items-center">
+                <div className="flex flex-row gap-[5vh] -ml-[5vh] justify-center mt-[2vh] items-center">
                     <button
                         className={linkClass("/sw/consulta/ver-consultas-agendadas")}
-                        onClick={() => router.push("/sw/consulta/ver-consultas-agendadas/123")}
+                        onClick={() => router.push("/sw/consulta/ver-consultas-agendadas")}
                     >
                         Agendadas
                     </button>
                     <button
                         className={linkClass("/sw/consulta/ver-consultas-realizadas")}
-                        onClick={() => router.push("/sw/consulta/ver-consultas-realizadas/123")}
+                        onClick={() => router.push("/sw/consulta/ver-consultas-realizadas")}
                     >
                         Realizadas
                     </button>
@@ -63,8 +63,9 @@ export default function VerConsultasRealizadas() {
                     <option>Todas</option>
                 </select>
 
-                {/* lista de cards */}
+                {/* lista de cards, que vão servir também como botões */}
                 <div className="flex flex-col gap-3 overflow-y-auto">
+                    <button onClick={()=> console.log('clicou')}>
                     {consultas.map((consulta) => (
                         <ConsultaCard
                             key={consulta.id}
@@ -75,6 +76,7 @@ export default function VerConsultasRealizadas() {
                             fotoUrl={consulta.fotoUrl}
                         />
                     ))}
+                    </button>
                 </div>
             </div>
         </div>
