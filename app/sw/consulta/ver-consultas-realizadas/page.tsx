@@ -65,7 +65,7 @@ export default function VerConsultasRealizadas() {
 
                 {/* lista de cards, que vão servir também como botões */}
                 <div className="flex flex-col gap-3 overflow-y-auto">
-                    <button onClick={()=> console.log('clicou')}>
+                    <button onClick={()=> router.push("/sw/consulta/ver-consulta-realizada/[id]")}>
                     {consultas.map((consulta) => (
                         <ConsultaCard
                             key={consulta.id}
