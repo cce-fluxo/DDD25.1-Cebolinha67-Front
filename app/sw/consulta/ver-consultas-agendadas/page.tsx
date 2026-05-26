@@ -38,7 +38,7 @@ export default function VerConsultasRealizadas() {
         <div className="flex h-screen w-full">
             <div className="flex w-[25%] h-[80%] flex-col gap-[4vh] bg-white border border-gray-300 rounded-2xl mt-[4vh] ml-[4vh] p-4">
                 {/* botões */}
-                <div className="flex flex-row gap-[5vh] -ml-[5vh] justify-center mt-[2vh] items-center">
+                <div className="flex flex-row gap-[3vh] -ml-[5vh] justify-center mt-[2vh] items-center">
                     <button
                         className={linkClass("/sw/consulta/ver-consultas-agendadas")}
                         onClick={() => router.push("/sw/consulta/ver-consultas-agendadas")}
@@ -79,6 +79,10 @@ export default function VerConsultasRealizadas() {
                     </button>
                 </div>
             </div>
+
+            {/* agora fazer aquele retângulo grandão do lado, que nesse caso vai ser o sorriso de vc não selecionou nenhum paciente ainda */}
+
+            
         </div>
     )
 }
