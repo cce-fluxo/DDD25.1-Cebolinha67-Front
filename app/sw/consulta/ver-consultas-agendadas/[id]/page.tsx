@@ -65,7 +65,7 @@ export default function VerConsultasRealizadas() {
 
                 {/* lista de cards, que vão servir também como botões */}
                 <div className="flex flex-col gap-3 overflow-y-auto">
-                    <button onClick={()=> router.push('/sw/consulta/ver-consultas-agendadas/[id]')}>
+                <button onClick={()=> router.push(`/sw/consulta/ver-consultas-agendadas/[id]`)}>
                     {consultas.map((consulta) => (
                         <ConsultaCard
                             key={consulta.id}

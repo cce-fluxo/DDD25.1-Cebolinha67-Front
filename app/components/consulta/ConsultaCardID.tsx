@@ -1,4 +1,6 @@
+"use client"
 
+import { useState, useEffect } from "react"
 
 // vou precisar criar um type que una a consulta e o paciente pra eu conseguir passar todos os dados que eu preciso e mostrar todos eles na tela 
 
@@ -65,6 +67,7 @@ export type DetalheDaConsulta = {
 export type ConsultaCardIDProps = Consulta & Paciente & Dentista & DetalheDaConsulta
 
 export default function ConsultaCardID({nome, usuario: {cpf}, rg, usuario: {nu_celular}, usuario:{email_usuario}, idade, usuario: {no_usuario}, data, tipo_consulta, motivo, DH}:ConsultaCardIDProps){
+
     return(
         <div>
         <div className="flex w-[120vh] mt-[4vh] h-[80vh] px-52 justify-center items-center border border-solid border-gray-300 rounded-2xl bg-white">
