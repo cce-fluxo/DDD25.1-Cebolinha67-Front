@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react"
-import { login as loginApi, getMe, Usuario } from "@/lib/api"
+import { login as loginApi, getMe, Dentista } from "@/lib/api"
 
 // Decodifica o payload do JWT sem biblioteca externa
 // O payload do JWT é só base64 — não é criptografado, só codificado
@@ -13,7 +13,7 @@ function decodeJwt(token: string): { id: number; email: string } {
 // ─── Tipos do Context ─────────────────────────────────────────────────────────
 
 interface AuthContextType {
-  usuario: Usuario | null      // dados completos do usuário logado (ou null)
+  usuario: Dentista | null      // dados completos do usuário logado (ou null)
   token: string | null         // JWT bruto (para uso avançado se precisar)
   carregando: boolean          // true enquanto verifica o token salvo no localStorage
   login: (email: string, senha: string) => Promise<void>
@@ -27,7 +27,7 @@ const AuthContext = createContext<AuthContextType | null>(null)
 // ─── Provider ────────────────────────────────────────────────────────────────
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [usuario, setUsuario] = useState<Usuario | null>(null)
+  const [usuario, setUsuario] = useState<Dentista | null>(null)
   const [token, setToken] = useState<string | null>(null)
   const [carregando, setCarregando] = useState(true)
 

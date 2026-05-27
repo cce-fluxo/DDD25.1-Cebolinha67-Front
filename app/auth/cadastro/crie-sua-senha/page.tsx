@@ -35,10 +35,17 @@ export default function CrieSuaSenha(){
 
         try {
           await criarUsuario({
-            ...dadosSalvos,
-            senha_usuario: values.senha,
-            genero: "NaoInformado",
-          })
+          formacao: "NaoInformado",       // coloquei uns dados de mentira já que o perfil ainda tá hard coded
+          instituto: "NaoInformado",
+          datainicio: new Date().toISOString(),
+          datatermino: new Date().toISOString(),
+          especializacao: "NaoInformado",
+          usuario: {
+          ...dadosSalvos, // vai pegar os dados tratados pelo formik e yup
+          senha_usuario: values.senha,
+          genero: "NaoInformado",
+          }
+  })
 
           await login(dadosSalvos.email_usuario, values.senha)
 
@@ -59,8 +66,6 @@ export default function CrieSuaSenha(){
         }
       }
     })
-
-// coloquei o set timeout pro popup só aparecer por um tempo específico na tela, EU COLOQUEI MAIS PRA TESTAR, LEMBRAR DISSO DEPOIS 
 
     return(
         <div>

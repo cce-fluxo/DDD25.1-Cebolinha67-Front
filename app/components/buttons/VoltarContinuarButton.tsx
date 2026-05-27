@@ -28,10 +28,6 @@ export default function VoltarContinuarButton({ habilitado, onContinuar }: Volta
         Continuar
       </button>
 
-      <button onClick={() => setMostrarPopup(true)}>
-        Abrir popup
-      </button>
-
     </div>
   )
 }
